@@ -24,6 +24,23 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
+const session = require('express-session');
+const passport = require('passport');
+
+require('./configs/passport');
+
+const MongoStore = require('connect-mongo')(session);
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -50,6 +67,7 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.locals.title = 'Craft Beer Berlin';
 
 app.use("/api/", require("./routes/index"));
+app.use('/api/auth', require('./routes/auth'));
 
 app.use((req, res) => {
   // If no routes match, send them the React HTML.
