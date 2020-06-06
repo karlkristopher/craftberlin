@@ -12,8 +12,8 @@ const BrewerySchema = new Schema({
 
   logoImgName: String,
   logoImgPath: String,
-  Description: String,
-  Website: String,
+  description: String,
+  website: String,
 });
 
 const Brewery = model("Brewery", BrewerySchema);
