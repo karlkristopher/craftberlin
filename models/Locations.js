@@ -11,7 +11,7 @@ const LocationsSchema = new Schema({
     },
   ],
   bar: { type: Boolean, default: false },
-  brauhaus: { type: Boolean, default: false },
+  tapRoom: { type: Boolean, default: false },
   bottleShop: { type: Boolean, default: false },
 });
 
