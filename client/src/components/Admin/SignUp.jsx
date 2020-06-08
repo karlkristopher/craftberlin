@@ -1,17 +1,15 @@
-import React, {Component} from 'react'
-import 'bulma/css/bulma.css'
-import { signup } from "../../services/Auth"
-
-
+import React, { Component } from "react";
+import { signup } from "../../services/Auth";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 class SignUp extends Component {
-  state = { 
+  state = {
     username: "",
     password: "",
     message: "",
-   }
+  };
 
-   handleChange = (event) => {
+  handleChange = (event) => {
     const { name, value } = event.target;
 
     this.setState({
@@ -32,7 +30,7 @@ class SignUp extends Component {
           password: "",
         });
       } else {
-     //   this.props.setUser(data); //NEEDS TO BE UPDATED
+        this.props.setUser(data);
         this.props.history.push("/admin");
       }
     });
@@ -41,54 +39,50 @@ class SignUp extends Component {
   render() {
     return (
       <>
-        <div className="auth-container">
+        <div className="container">
           <form onSubmit={this.handleSubmit}>
-            <div className="field input-form">
-   
-              <h1 className="title is-1 is-size-3-mobile">Sign Up</h1>
-              <div className="field">
-                <label className="label">Username</label>
-                <div className="control">
-                  <input
-                    className="input"
-                    type="text"
-                    name="username"
-                    value={this.state.username}
-                    onChange={this.handleChange}
-                    id="username"
-                    placeholder="My username"
-                  />
-                </div>
+            <div className="">
+              <h1 className="">Sign Up</h1>
+              <div className="form-group">
+                <label className="">Username</label>
+
+                <input
+                  className="form-control"
+                  type="text"
+                  name="username"
+                  value={this.state.username}
+                  onChange={this.handleChange}
+                  id="username"
+                  placeholder="My username"
+                />
               </div>
 
-              <div className="field">
-                <label className="label">Password</label>
-                <div className="control">
-                  <input
-                    className="input"
-                    type="password"
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.handleChange}
-                    id="password"
-                    placeholder="My password"
-                  />
-                </div>
+              <div className="form-group">
+                <label className="">Password</label>
+
+                <input
+                  className="form-control"
+                  type="password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                  id="password"
+                  placeholder="My password"
+                />
               </div>
-              <div className="notice">
+              <div className="">
                 {this.state.message && <p>{this.state.message}</p>}
               </div>
-              <div className="field button-group">
-                <div className="control">
+              <div className="">
+                <div className="">
                   <button
                     type="submit"
                     value="Signup"
-                    class="button positive"
+                    className="btn btn-primary"
                   >
                     Sign up
                   </button>
                 </div>
-           
               </div>
             </div>
           </form>
@@ -97,5 +91,5 @@ class SignUp extends Component {
     );
   }
 }
- 
+
 export default SignUp;

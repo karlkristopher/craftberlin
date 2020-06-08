@@ -7,10 +7,10 @@ const passport = require('passport');
 router.post('/signup', (req, res) => {
   const { username, password } = req.body;
 
-  if (!password || password.length < 8) {
+  if (!password || password.length < 3) {
     return res
       .status(400)
-      .json({ message: 'Your password must be 8 char. min.' });
+      .json({ message: 'Your password must be 3 char. min.' });
   }
   if (!username) {
     return res.status(400).json({ message: 'Your username cannot be empty' });
@@ -27,9 +27,8 @@ router.post('/signup', (req, res) => {
       const salt = bcrypt.genSaltSync();
       const hash = bcrypt.hashSync(password, salt);
 
-      return Admin.create({ username: username, password: hash }).then(
+      return Admin.create({ username: username, password: hash, role: null }).then(
         dbUser => {
-
           req.login(dbUser, err => {
             if (err) {
               return res
@@ -52,6 +51,9 @@ router.post('/login', (req, res) => {
       return res.status(500).json({ message: 'Error while authenticating' });
     }
     if (!user) {
+      return res.status(400).json({ message: 'Wrong credentials' });
+    }
+    if (user.role !== "admin"){
       return res.status(400).json({ message: 'Wrong credentials' });
     }
     req.login(user, err => {
