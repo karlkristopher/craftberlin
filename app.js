@@ -68,6 +68,7 @@ app.locals.title = 'Craft Beer Berlin';
 
 app.use("/api/", require("./routes/index"));
 app.use('/api/auth', require('./routes/auth'));
+app.use("/api/locations", require("./routes/locations"));
 
 app.use((req, res) => {
   // If no routes match, send them the React HTML.
