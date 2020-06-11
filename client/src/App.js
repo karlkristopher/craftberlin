@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import "./App.css";
 
 //Components
@@ -8,10 +8,11 @@ import Home from "./components/Home";
 import NotFound from "./components/NotFound";
 import Admin from "./components/Admin/Admin";
 import SignUp from "./components/Admin/SignUp";
+import AddLocations from "./components/Admin/AddLocation";
 
 class App extends Component {
   state = {
-    user: "",
+    user: this.props.user,
   };
 
   setUser = (user) => {
@@ -20,8 +21,10 @@ class App extends Component {
     });
   };
 
+
+  //Hold Axios Location Post/Put routes here
+
   render() {
-    console.log(this.state.user)
     return (
       <>
         <Navbar user={this.state.user} />
@@ -30,7 +33,30 @@ class App extends Component {
             exact
             path="/admin"
             render={(props) => {
-              return <Admin user={this.state.user} setUser={this.setUser} {...props} />;
+              return (
+                <Admin
+                  user={this.state.user}
+                  setUser={this.setUser}
+                  {...props}
+                />
+              );
+            }}
+          />
+          <Route
+            exact
+            path="/admin/add"
+            render={(props) => {
+              if (this.state.user.role === "admin") {
+                return (
+                  <AddLocations
+                    user={this.state.user}
+                    setUser={this.setUser}
+                    {...props}
+                  />
+                );
+              } else {
+                return <Redirect to="/" />;
+              }
             }}
           />
 
