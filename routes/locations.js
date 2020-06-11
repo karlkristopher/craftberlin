@@ -20,10 +20,13 @@ router.post(
   "/",
   /* loginCheck(), */
   (req, res) => {
-    const { name, website, bar, tapRoom, bottleShop, address, logo, kiez } = req.body;
+
+    console.log(req.body)
+    console.log('check')
+    const { name, website, bar, tapRoom, bottleShop, address, logo, addedBy } = req.body;
 
     Locations.create({
-      name, website, bar, tapRoom, bottleShop, address, logo, kiez
+      name, website, bar, tapRoom, bottleShop, address, logo, addedBy
     })
       .then(location => {
         console.log(`adding location: ${location}`);
