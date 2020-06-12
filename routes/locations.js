@@ -15,14 +15,11 @@ const loginCheck = () => {
 };
 
 // Add Location
-
 router.post(
   "/",
-  /* loginCheck(), */
+  loginCheck(),
   (req, res) => {
 
-    console.log(req.body)
-    console.log('check')
     const { name, website, bar, tapRoom, bottleShop, address, logo, addedBy } = req.body;
 
     Locations.create({
@@ -38,5 +35,29 @@ router.post(
       });
   }
 );
+
+// Get all Locations
+router.get("/", loginCheck(), (req, res) => {
+  Locations.find()
+    .then(locations => {
+      res.status(200).json(locations);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
+//Delete a location
+
+router.delete("/:id", (req, res) => {
+  const id = req.params.id;
+  Locations.findByIdAndDelete(id)
+    .then(location => {
+      res.status(200).json(location);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
 
 module.exports = router;

@@ -6,7 +6,7 @@ class Admin extends Component {
 
   render() {
     return (
-      <>
+      <div className ="container">
         <h4>Admin Page</h4>
 
         {this.props.user.role === 'admin' ? (
@@ -14,7 +14,7 @@ class Admin extends Component {
         ) : (
           <Login setUser={this.props.setUser} history={this.props.history} />
         )}
-      </>
+      </div>
     );
   }
 }
