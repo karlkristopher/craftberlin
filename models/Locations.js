@@ -10,7 +10,8 @@ const LocationsSchema = new Schema({
   website: String,
   address: String,
   logo: String,
-  addedBy: String
+  addedBy: String,
+  lastEdit: String,
 });
 
 const Locations = mongoose.model("Locations", LocationsSchema);

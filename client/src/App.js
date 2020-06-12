@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import "./App.css";
 
+
 //Components
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
@@ -22,7 +23,9 @@ class App extends Component {
   };
 
 
-  //Hold Axios Location Post/Put routes here
+
+
+
 
   render() {
     return (
@@ -51,6 +54,7 @@ class App extends Component {
                   <AddLocations
                     user={this.state.user}
                     setUser={this.setUser}
+                    submitPost={this.handleSubmitPost}
                     {...props}
                   />
                 );
