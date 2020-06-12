@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { logout } from "../services/Auth";
+import { Navbar } from "react-bootstrap";
 
 const handleLogout = (props) => {
   logout().then(() => {
@@ -9,27 +10,25 @@ const handleLogout = (props) => {
   });
 };
 
-class Navbar extends Component {
+class Nav extends Component {
   render() {
     return (
-      <div>
-        NavBar
-        <Link to="/">Home</Link>
+      <>
         {this.props.user && (
-          <>
-            <Link to="/admin">Admin</Link>
-            <a
-              className="button negative"
+          <Navbar>
+            <Navbar.Brand href="/">Home</Navbar.Brand>
+            <Navbar.Brand href="/admin">Admin</Navbar.Brand>
+            <Navbar.Brand
               href="/admin"
               onClick={() => handleLogout(this.props)}
             >
               Logout
-            </a>
-          </>
+            </Navbar.Brand>
+          </Navbar>
         )}
-      </div>
+      </>
     );
   }
 }
 
-export default Navbar;
+export default Nav;

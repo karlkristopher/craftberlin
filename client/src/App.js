@@ -1,15 +1,29 @@
 import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
+import { createGlobalStyle } from 'styled-components';
 import "./App.css";
 
 
 //Components
-import Navbar from "./components/Navbar";
+import Nav from "./components/Navbar";
 import Home from "./components/Home";
 import NotFound from "./components/NotFound";
 import Admin from "./components/Admin/Admin";
 import SignUp from "./components/Admin/SignUp";
 import AddLocations from "./components/Admin/AddLocation";
+
+
+const GlobalStyle = createGlobalStyle`
+html {
+  color: '#393939';
+}
+
+body {
+  padding: 0;
+  margin: 1rem 0 0 0;
+}
+`;
+
 
 class App extends Component {
   state = {
@@ -23,14 +37,11 @@ class App extends Component {
   };
 
 
-
-
-
-
   render() {
     return (
       <>
-        <Navbar user={this.state.user} />
+      <GlobalStyle />
+        <Nav user={this.state.user} />
         <Switch>
           <Route
             exact
