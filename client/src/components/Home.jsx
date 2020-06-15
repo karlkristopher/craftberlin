@@ -6,25 +6,29 @@ import Content from "./Map/Content";
 
 const SectionWrap = styled.section`
   display: flex;
+  flex-wrap: wrap;
   div {
-    margin: 1rem;
+    /* margin: 1rem; */
   }
 `;
 
 const MapDiv = styled.div`
-  width: 55%;
-
+  width: 100vw;
 `;
 
 const ContentDiv = styled.div`
-  width: 45%;
+  width: 100vw;
 `;
 
 class Home extends Component {
   state = {};
+
+
+
+  
   render() {
     return (
-      <div className="container">
+      <div>
         <h1>Berlin Craft Beer</h1>
         <SectionWrap>
           <MapDiv>

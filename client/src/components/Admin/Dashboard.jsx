@@ -58,6 +58,7 @@ class Dashboard extends Component {
         tapRoom,
         addedBy,
         editedBy,
+        coordinates
       } = loc;
       return (
         <tr key={loc._id}>
@@ -84,6 +85,7 @@ class Dashboard extends Component {
             </button>
           </th>
           <td>{name}</td>
+          <td>[{coordinates[0]}, {coordinates[1]}]</td>
           <td>{address}</td>
           <td>{website}</td>
           <td>{tapRoom ? "Yes" : "No"}</td>
@@ -106,6 +108,7 @@ class Dashboard extends Component {
               <tr>
                 <th scope="col">Change</th>
                 <th scope="col">Name</th>
+                <th scope="col">Coordinates</th>
                 <th scope="col">Address</th>
                 <th scope="col">Website</th>
                 <th scope="col">TapRoom</th>

@@ -16,6 +16,30 @@ const LocationChange = (props) => {
             onChange={props.handleChange}
           />
         </div>
+        <div className="form-group">
+          <label htmlFor="latitude">Coordinates (Latitude)</label>
+          <input
+            type="number"
+            className="form-control"
+            id="latitude"
+            name="latitude"
+            placeholder="Enter Latitude as number (N+ S-)"
+            value={props.input.latitude}
+            onChange={props.handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="longitude">Coordinates (Longitude)</label>
+          <input
+            type="number"
+            className="form-control"
+            id="longitude"
+            name="longitude"
+            placeholder="Enter Longitude as number (E+ W-)"
+            value={props.input.longitude}
+            onChange={props.handleChange}
+          />
+        </div>
         <div className="form-check">
           <input
             type="checkbox"

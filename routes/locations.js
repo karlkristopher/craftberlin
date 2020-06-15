@@ -20,10 +20,10 @@ router.post(
   loginCheck(),
   (req, res) => {
 
-    const { name, website, bar, tapRoom, bottleShop, address, logo, addedBy } = req.body;
+    const { name, website, bar, tapRoom, bottleShop, address, logo, addedBy, latitude, longitude } = req.body;
 
     Locations.create({
-      name, website, bar, tapRoom, bottleShop, address, logo, addedBy
+      name, website, bar, tapRoom, bottleShop, address, logo, addedBy, coordinates: [latitude, longitude]
     })
       .then(location => {
         console.log(`adding location: ${location}`);
@@ -37,7 +37,7 @@ router.post(
 );
 
 // Get all Locations
-router.get("/", loginCheck(), (req, res) => {
+router.get("/", (req, res) => {
   Locations.find()
     .then(locations => {
       res.status(200).json(locations);
@@ -49,7 +49,7 @@ router.get("/", loginCheck(), (req, res) => {
 
 //Delete a location
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", loginCheck(), (req, res) => {
   const id = req.params.id;
   Locations.findByIdAndDelete(id)
     .then(location => {
