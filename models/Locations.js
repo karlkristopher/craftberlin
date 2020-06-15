@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const LocationsSchema = new Schema({
   name: String,
+  coordinates: [Number],
   brewery: { type: Schema.Types.ObjectId, ref: "Brewery" },
   bar: { type: Boolean, default: false },
   tapRoom: { type: Boolean, default: false },

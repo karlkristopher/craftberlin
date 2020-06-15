@@ -6,6 +6,8 @@ import axios from "axios";
 class AddLocations extends Component {
   state = {
     name: "",
+    longitude: 0,
+    latitude: 0,
     address: "",
     website: "",
     bar: false,
@@ -16,7 +18,7 @@ class AddLocations extends Component {
   handleSubmitPost = (event) => {
     event.preventDefault();
 
-    const { name, address, website, bar, tapRoom, bottleShop } = this.state;
+    const { name, address, website, bar, tapRoom, bottleShop, longitude, latitude } = this.state;
 
     const addedBy = this.props.user.username
 
@@ -28,7 +30,9 @@ class AddLocations extends Component {
         bar,
         tapRoom,
         bottleShop,
-        addedBy
+        addedBy,
+        longitude,
+        latitude
       })
       .then(() => {
         this.props.history.push("/admin");
@@ -56,6 +60,7 @@ class AddLocations extends Component {
 
 
   render() {
+    console.log(this.state)
     return (
       <div className="container mt-3">
         <h2>Add a Location</h2>
