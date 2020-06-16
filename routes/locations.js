@@ -69,10 +69,6 @@ router.put("/:id", loginCheck(), (req, res) => {
     longitude,
   } = req.body;
 
-
-  console.log(lastEdit)
-
-
   Locations.findByIdAndUpdate(
     id,
     {
