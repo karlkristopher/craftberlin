@@ -53,26 +53,28 @@ class Dashboard extends Component {
         name,
         address,
         website,
+        googleMaps,
         bar,
         bottleShop,
         tapRoom,
         addedBy,
         editedBy,
-        coordinates
+        coordinates,
       } = loc;
       return (
         <tr key={loc._id}>
           <th scope="row">
-            <button
-              // id={loc._id}
-              // name={thing}
-              type="button"
-              value={loc._id}
-             // onClick= //Link to edit page
-              className="btn btn-outline-info btn-sm"
-            >
-              Edit
-            </button>
+            <Link to={`/admin/edit/${loc._id}`}>
+              <button
+                // id={loc._id}
+                // name={thing}
+                type="button"
+                value={loc._id} //not needed?
+                className="btn btn-outline-info btn-sm"
+              >
+                Edit
+              </button>
+            </Link>
             <button
               // id={loc._id}
               // name={thing}
@@ -85,8 +87,11 @@ class Dashboard extends Component {
             </button>
           </th>
           <td>{name}</td>
-          <td>[{coordinates[0]}, {coordinates[1]}]</td>
+          <td>
+            [{coordinates[0]}, {coordinates[1]}]
+          </td>
           <td>{address}</td>
+          <td>{googleMaps}</td>
           <td>{website}</td>
           <td>{tapRoom ? "Yes" : "No"}</td>
           <td>{bar ? "Yes" : "No"}</td>
@@ -110,6 +115,7 @@ class Dashboard extends Component {
                 <th scope="col">Name</th>
                 <th scope="col">Coordinates</th>
                 <th scope="col">Address</th>
+                <th scope="col">Google Maps Link</th>
                 <th scope="col">Website</th>
                 <th scope="col">TapRoom</th>
                 <th scope="col">Bar</th>
@@ -118,7 +124,15 @@ class Dashboard extends Component {
                 <th scope="col">Edited By</th>
               </tr>
             </thead>
-            <tbody>{displayLocations.length < 1 ? <tr><td>No Locations Added</td></tr> : displayLocations}</tbody>
+            <tbody>
+              {displayLocations.length < 1 ? (
+                <tr>
+                  <td>No Locations Added</td>
+                </tr>
+              ) : (
+                displayLocations
+              )}
+            </tbody>
           </table>
         </div>
       </div>

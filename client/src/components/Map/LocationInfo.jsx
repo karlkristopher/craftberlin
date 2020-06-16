@@ -2,7 +2,6 @@ import * as React from "react";
 import { PureComponent } from "react";
 import styled from "styled-components";
 
-
 const PopupBox = styled.div`
   padding-top: 0.8rem;
 
@@ -32,6 +31,8 @@ export default class LocationInfo extends PureComponent {
           <p>
             <a target="_new" href={info.website}>
               Website
+            </a> |  <a target="_new" href={info.googleMaps}>
+              Google Maps
             </a>
           </p>
           {info.tapRoom && <p>Tap Room ✅</p>}

@@ -9,6 +9,7 @@ const LocationsSchema = new Schema({
   tapRoom: { type: Boolean, default: false },
   bottleShop: { type: Boolean, default: false },
   website: String,
+  googleMaps: String,
   address: String,
   logo: String,
   addedBy: String,

@@ -93,6 +93,18 @@ const LocationChange = (props) => {
           />
         </div>
         <div className="form-group">
+          <label htmlFor="googleMaps">Google Map Link</label>
+          <input
+            type="text"
+            className="form-control"
+            name="googleMaps"
+            id="googleMaps"
+            placeholder="Enter Google Maps Link"
+            value={props.input.googleMaps}
+            onChange={props.handleChange}
+          />
+        </div>
+        <div className="form-group">
           <label htmlFor="website">Website</label>
           <input
             type="text"

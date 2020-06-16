@@ -20,10 +20,10 @@ router.post(
   loginCheck(),
   (req, res) => {
 
-    const { name, website, bar, tapRoom, bottleShop, address, logo, addedBy, latitude, longitude } = req.body;
+    const { name, website, googleMaps, bar, tapRoom, bottleShop, address, logo, addedBy, latitude, longitude } = req.body;
 
     Locations.create({
-      name, website, bar, tapRoom, bottleShop, address, logo, addedBy, coordinates: [latitude, longitude]
+      name, website, googleMaps, bar, tapRoom, bottleShop, address, logo, addedBy, coordinates: [latitude, longitude]
     })
       .then(location => {
         console.log(`adding location: ${location}`);
@@ -36,9 +36,44 @@ router.post(
   }
 );
 
+// Add Location
+router.put(
+  "/:id",
+  loginCheck(),
+  (req, res) => {
+
+    {id}
+
+    const { name, website, googleMaps, bar, tapRoom, bottleShop, address, logo, addedBy, latitude, longitude } = req.body;
+
+    Locations.findByIdAndUpdate( id, {
+      name, website, googleMaps, bar, tapRoom, bottleShop, address, logo, addedBy, coordinates: [latitude, longitude]
+    },  { new: true })
+      .then(location => {
+        console.log(`editing location: ${location}`);
+        res.status(201).json(location);
+      })
+      .catch(err => {
+        console.log('ERRRRR')
+        res.json(err);
+      });
+  }
+);
+
 // Get all Locations
 router.get("/", (req, res) => {
   Locations.find()
+    .then(locations => {
+      res.status(200).json(locations);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
+// Get one location
+router.get("/:id", (req, res) => {
+  Locations.findById (req.params.id)
     .then(locations => {
       res.status(200).json(locations);
     })

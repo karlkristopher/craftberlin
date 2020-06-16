@@ -13,6 +13,7 @@ const mapboxToken = process.env.REACT_APP_MAPBOX;
 class Map extends Component {
   state = {
     allLocations: [],
+
     viewport: {
       width: "100vw",
       height: "100vh",
@@ -40,7 +41,6 @@ class Map extends Component {
 
   renderPopup() {
     const { selectedLocation } = this.state;
-
     return (
       selectedLocation && (
         <Popup
@@ -56,7 +56,25 @@ class Map extends Component {
     );
   }
 
+
   render() {
+
+    const {allLocations} = this.state
+   const {barCheck, bottleShopCheck, tapRoomCheck} = this.props
+  
+
+    const displayMarkers = allLocations.filter(location => {
+      console.log(location.bar)
+      console.log(barCheck)
+      if (location.bar && barCheck) return true;
+      if (location.tapRoom && tapRoomCheck) return true;
+      if (location.bottleShop && bottleShopCheck) return true;
+      return false;
+    })
+
+    console.log(displayMarkers)
+
+
     return (
       <>
         <ReactMapGL
@@ -66,7 +84,7 @@ class Map extends Component {
           mapboxApiAccessToken={mapboxToken}
         >
           <Markers
-            locations={this.state.allLocations}
+            locations={displayMarkers}
             setSelectedLocation={this.setSelectedLocation}
           />
 
