@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import Map from "./Map/Map";
 import Content from "./Map/Content";
+import CheckBox from "./Checkbox";
 
 const SectionWrap = styled.section`
   display: flex;
@@ -20,19 +21,44 @@ const ContentDiv = styled.div`
   width: 100vw;
 `;
 
+const Head = styled.header`
+  display: flex;
+`;
+
 class Home extends Component {
-  state = {};
+  state = {
+    barCheck: true,
+    bottleShopCheck: true,
+    tapRoomCheck: true,
+  };
 
 
+  handleCheck = (event) => {
+    const {name, checked} = event.target;
+    this.setState({
+      [name]: checked,
+    });
+  };
 
-  
   render() {
+
+   const {barCheck, bottleShopCheck, tapRoomCheck} = this.state
     return (
       <div>
-        <h1>Berlin Craft Beer</h1>
+        <Head>
+          <div>
+            <h1>Berlin Craft Beer</h1>
+          </div>
+          <div>
+           <CheckBox name="barCheck" value="Bars" checked={barCheck} onChange={this.handleCheck}/>
+           <CheckBox name="bottleShopCheck" value="Bottle Shops" checked={bottleShopCheck} onChange={this.handleCheck}/>
+           <CheckBox name="tapRoomCheck" value="TapRoom?" checked={tapRoomCheck} onChange={this.handleCheck}/>
+          </div>
+        </Head>
+
         <SectionWrap>
           <MapDiv>
-            <Map />
+            <Map barCheck={barCheck} bottleShopCheck={bottleShopCheck} tapRoomCheck={tapRoomCheck}/>
           </MapDiv>
           <ContentDiv>
             <Content />

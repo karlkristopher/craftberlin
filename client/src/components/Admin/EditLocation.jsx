@@ -3,7 +3,7 @@ import LocationChange from "./LocationChange";
 import axios from "axios";
 
 
-class AddLocations extends Component {
+class EditLocations extends Component {
   state = {
     name: "",
     longitude: 0,
@@ -16,15 +16,32 @@ class AddLocations extends Component {
     bottleShop: false,
   };
 
-  handleSubmitPost = (event) => {
+  componentDidMount(){
+    const id = this.props.match.params.id
+    axios
+      .get(`/api/locations/${id}`)
+      .then((response) => {
+        const {name, bar, address, googleMaps, coordinates, tapRoom, bottleShop, website } = response.data
+        this.setState({ name, bar, address, googleMaps, latitude: coordinates[0], longitude: coordinates[1], tapRoom, bottleShop, website});
+      })
+      .catch((err) => {
+        if (err.response.status === 400) {
+          this.setState({ error: "Locations not found" });
+        }
+      });
+
+  }
+
+  handleSubmitEdit = (event) => {
     event.preventDefault();
 
     const { name, address, website, googleMaps, bar, tapRoom, bottleShop, longitude, latitude } = this.state;
 
-    const addedBy = this.props.user.username
+    const lastEdit = this.props.user.username
 
+    const id = this.props.match.params.id;
     axios
-      .post("/api/locations", {
+      .put(`/api/locations/${id}`, {
         name,
         address,
         googleMaps,
@@ -32,7 +49,7 @@ class AddLocations extends Component {
         bar,
         tapRoom,
         bottleShop,
-        addedBy,
+        lastEdit,
         longitude,
         latitude
       })
@@ -62,17 +79,15 @@ class AddLocations extends Component {
 
 
   render() {
-    console.log(this.state)
     return (
       <div className="container mt-3">
         <h2>Add a Location</h2>
         <LocationChange
-          handleSubmit={this.handleSubmitPost} input={this.state} handleChange={this.handleChange} handleCheck={this.handleCheck}
+          handleSubmit={this.handleSubmitEdit} input={this.state} handleChange={this.handleChange} handleCheck={this.handleCheck}
         />
       </div>
     );
   }
 }
 
-export default AddLocations;
-
+export default EditLocations;

@@ -11,6 +11,7 @@ import NotFound from "./components/NotFound";
 import Admin from "./components/Admin/Admin";
 import SignUp from "./components/Admin/SignUp";
 import AddLocations from "./components/Admin/AddLocation";
+import EditLocations from "./components/Admin/EditLocation"
 
 
 const GlobalStyle = createGlobalStyle`
@@ -65,7 +66,25 @@ class App extends Component {
                   <AddLocations
                     user={this.state.user}
                     setUser={this.setUser}
-                    submitPost={this.handleSubmitPost}
+                    submitPost={this.handleSubmitPost}  //Not needed?
+                    {...props}
+                  />
+                );
+              } else {
+                return <Redirect to="/" />;
+              }
+            }}
+          />
+           <Route
+            exact
+            path="/admin/edit/:id"
+            render={(props) => {
+              if (this.state.user.role === "admin") {
+                return (
+                  <EditLocations
+                    user={this.state.user}
+                    setUser={this.setUser}
+                    // submitPost={this.handleSubmitPost}
                     {...props}
                   />
                 );
