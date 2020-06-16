@@ -5,7 +5,6 @@ import { Navbar } from "react-bootstrap";
 
 const handleLogout = (props) => {
   logout().then(() => {
-    console.log("loggedout", props);
     props.setUser(null);
   });
 };
