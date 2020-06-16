@@ -15,55 +15,94 @@ const loginCheck = () => {
 };
 
 // Add Location
-router.post(
-  "/",
-  loginCheck(),
-  (req, res) => {
+router.post("/", loginCheck(), (req, res) => {
+  const {
+    name,
+    website,
+    googleMaps,
+    bar,
+    tapRoom,
+    bottleShop,
+    address,
+    logo,
+    addedBy,
+    latitude,
+    longitude,
+  } = req.body;
 
-    const { name, website, googleMaps, bar, tapRoom, bottleShop, address, logo, addedBy, latitude, longitude } = req.body;
-
-    Locations.create({
-      name, website, googleMaps, bar, tapRoom, bottleShop, address, logo, addedBy, coordinates: [latitude, longitude]
+  Locations.create({
+    name,
+    website,
+    googleMaps,
+    bar,
+    tapRoom,
+    bottleShop,
+    address,
+    logo,
+    addedBy,
+    coordinates: [latitude, longitude],
+  })
+    .then((location) => {
+      console.log(`adding location: ${location}`);
+      res.status(201).json(location);
     })
-      .then(location => {
-        console.log(`adding location: ${location}`);
-        res.status(201).json(location);
-      })
-      .catch(err => {
-        console.log('ERRRRR')
-        res.json(err);
-      });
-  }
-);
+    .catch((err) => {
+      console.log("ERRRRR");
+      res.json(err);
+    });
+});
 
 // Add Location
-router.put(
-  "/:id",
-  loginCheck(),
-  (req, res) => {
+router.put("/:id", loginCheck(), (req, res) => {
+  const { id } = req.params;
+  const {
+    name,
+    website,
+    googleMaps,
+    bar,
+    tapRoom,
+    bottleShop,
+    address,
+    logo,
+    lastEdit,
+    latitude,
+    longitude,
+  } = req.body;
 
-    {id}
 
-    const { name, website, googleMaps, bar, tapRoom, bottleShop, address, logo, addedBy, latitude, longitude } = req.body;
+  console.log(lastEdit)
 
-    Locations.findByIdAndUpdate( id, {
-      name, website, googleMaps, bar, tapRoom, bottleShop, address, logo, addedBy, coordinates: [latitude, longitude]
-    },  { new: true })
-      .then(location => {
-        console.log(`editing location: ${location}`);
-        res.status(201).json(location);
-      })
-      .catch(err => {
-        console.log('ERRRRR')
-        res.json(err);
-      });
-  }
-);
+
+  Locations.findByIdAndUpdate(
+    id,
+    {
+      name,
+      website,
+      googleMaps,
+      bar,
+      tapRoom,
+      bottleShop,
+      address,
+      logo,
+      lastEdit,
+      coordinates: [latitude, longitude],
+    },
+    { new: true }
+  )
+    .then((location) => {
+      console.log(`editing location: ${location}`);
+      res.status(201).json(location);
+    })
+    .catch((err) => {
+      console.log("ERRRRR");
+      res.json(err);
+    });
+});
 
 // Get all Locations
 router.get("/", (req, res) => {
   Locations.find()
-    .then(locations => {
+    .then((locations) => {
       res.status(200).json(locations);
     })
     .catch((err) => {
@@ -73,8 +112,8 @@ router.get("/", (req, res) => {
 
 // Get one location
 router.get("/:id", (req, res) => {
-  Locations.findById (req.params.id)
-    .then(locations => {
+  Locations.findById(req.params.id)
+    .then((locations) => {
       res.status(200).json(locations);
     })
     .catch((err) => {
@@ -87,7 +126,7 @@ router.get("/:id", (req, res) => {
 router.delete("/:id", loginCheck(), (req, res) => {
   const id = req.params.id;
   Locations.findByIdAndDelete(id)
-    .then(location => {
+    .then((location) => {
       res.status(200).json(location);
     })
     .catch((err) => {

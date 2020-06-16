@@ -1,6 +1,7 @@
 import * as React from "react";
 import { PureComponent } from "react";
 import styled from "styled-components";
+import Emoji from "./Emoji";
 
 const PopupBox = styled.div`
   padding-top: 0.8rem;
@@ -31,14 +32,17 @@ export default class LocationInfo extends PureComponent {
           <p>
             <a target="_new" href={info.website}>
               Website
-            </a> |  <a target="_new" href={info.googleMaps}>
+            </a>{" "}
+            |{" "}
+            <a target="_new" href={info.googleMaps}>
               Google Maps
             </a>
           </p>
-          {info.tapRoom && <p>Tap Room ✅</p>}
-          {info.bottleShop && <p>Bottle Shop ✅</p>}
-          {info.bar && <p>Bar ✅</p>}
+          {info.tapRoom && <p>Tap Room <Emoji symbol=" ✅" label="check"/></p>}
+          {info.bottleShop && <p>Bottle Shop <Emoji symbol=" ✅" label="check"/></p>}
+          {info.bar && <p>Bar <Emoji symbol=" ✅" label="check"/></p>}
         </div>
+        
       </PopupBox>
     );
   }

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import ReactMapGL, { Popup } from "react-map-gl";
 import axios from "axios";
 import dotenv from "dotenv";
@@ -56,24 +55,15 @@ class Map extends Component {
     );
   }
 
-
   render() {
-
-    const {allLocations} = this.state
-   const {barCheck, bottleShopCheck, tapRoomCheck} = this.props
-  
-
-    const displayMarkers = allLocations.filter(location => {
-      console.log(location.bar)
-      console.log(barCheck)
+    const { allLocations } = this.state;
+    const { barCheck, bottleShopCheck, tapRoomCheck } = this.props;
+    const displayMarkers = allLocations.filter((location) => {
       if (location.bar && barCheck) return true;
       if (location.tapRoom && tapRoomCheck) return true;
       if (location.bottleShop && bottleShopCheck) return true;
       return false;
-    })
-
-    console.log(displayMarkers)
-
+    });
 
     return (
       <>

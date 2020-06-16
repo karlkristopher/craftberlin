@@ -58,7 +58,7 @@ class Dashboard extends Component {
         bottleShop,
         tapRoom,
         addedBy,
-        editedBy,
+        lastEdit,
         coordinates,
       } = loc;
       return (
@@ -97,7 +97,7 @@ class Dashboard extends Component {
           <td>{bar ? "Yes" : "No"}</td>
           <td>{bottleShop ? "Yes" : "No"}</td>
           <td>{addedBy}</td>
-          <td>{editedBy ? editedBy : "No edits"} </td>
+          <td>{lastEdit ? lastEdit : "No edits"} </td>
         </tr>
       );
     });
@@ -121,7 +121,7 @@ class Dashboard extends Component {
                 <th scope="col">Bar</th>
                 <th scope="col">Shop</th>
                 <th scope="col">Added By</th>
-                <th scope="col">Edited By</th>
+                <th scope="col">Last Edited By</th>
               </tr>
             </thead>
             <tbody>
