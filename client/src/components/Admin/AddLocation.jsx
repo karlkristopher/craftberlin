@@ -62,7 +62,6 @@ class AddLocations extends Component {
 
 
   render() {
-    console.log(this.state)
     return (
       <div className="container mt-3">
         <h2>Add a Location</h2>
