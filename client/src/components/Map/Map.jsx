@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReactMapGL, { Popup } from "react-map-gl";
+import ReactMapGL, { Popup, Marker } from "react-map-gl";
 import axios from "axios";
 import dotenv from "dotenv";
 import LocationInfo from "./LocationInfo";
@@ -21,6 +21,7 @@ class Map extends Component {
       zoom: 12,
     },
     selectedLocation: null,
+    userLocation: {},
   };
 
   componentDidMount() {
@@ -38,6 +39,26 @@ class Map extends Component {
     this.setState({ selectedLocation: location });
   };
 
+  setUserLocation = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      let setUserLocation = {
+        lat: position.coords.latitude,
+        long: position.coords.longitude,
+      };
+      let newViewport = {
+        height: "100vh",
+        width: "100vw",
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+        zoom: 13,
+      };
+      this.setState({
+        viewport: newViewport,
+        userLocation: setUserLocation,
+      });
+    });
+  };
+
   renderPopup() {
     const { selectedLocation } = this.state;
     return (
@@ -45,8 +66,8 @@ class Map extends Component {
         <Popup
           closeOnClick={false}
           tipSize={5}
-          latitude={this.state.selectedLocation.coordinates[0]}
-          longitude={this.state.selectedLocation.coordinates[1]}
+          latitude={selectedLocation.coordinates[0]}
+          longitude={selectedLocation.coordinates[1]}
           onClose={() => this.setState({ selectedLocation: null })}
         >
           <LocationInfo info={selectedLocation} />
@@ -56,7 +77,9 @@ class Map extends Component {
   }
 
   render() {
-    const { allLocations } = this.state;
+
+    console.log(navigator.geolocation)
+    const { allLocations, viewport, userLocation } = this.state;
     const { barCheck, bottleShopCheck, tapRoomCheck } = this.props;
     const displayMarkers = allLocations.filter((location) => {
       if (location.bar && barCheck) return true;
@@ -67,16 +90,26 @@ class Map extends Component {
 
     return (
       <>
+      
         <ReactMapGL
-          {...this.state.viewport}
+          {...viewport}
           onViewportChange={(viewport) => this.setState({ viewport })}
           mapStyle="mapbox://styles/karlsec/ckbgcwiw44z3c1impwe1yfvpc"
           mapboxApiAccessToken={mapboxToken}
         >
+          <button onClick={this.setUserLocation}>My Location</button>
           <Markers
             locations={displayMarkers}
             setSelectedLocation={this.setSelectedLocation}
           />
+          {Object.keys(userLocation).length !== 0 && (
+            <Marker
+              latitude={userLocation.lat}
+              longitude={userLocation.long}
+            >
+              <img style={{width: "2rem"}} src="user-point.png" alt="marker" />
+            </Marker>
+          )}
 
           {this.renderPopup()}
         </ReactMapGL>
