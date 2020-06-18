@@ -77,8 +77,7 @@ class Map extends Component {
   }
 
   render() {
-
-    console.log(navigator.geolocation)
+    console.log(navigator.geolocation);
     const { allLocations, viewport, userLocation } = this.state;
     const { barCheck, bottleShopCheck, tapRoomCheck } = this.props;
     const displayMarkers = allLocations.filter((location) => {
@@ -90,7 +89,6 @@ class Map extends Component {
 
     return (
       <>
-      
         <ReactMapGL
           {...viewport}
           onViewportChange={(viewport) => this.setState({ viewport })}
@@ -106,8 +104,14 @@ class Map extends Component {
             <Marker
               latitude={userLocation.lat}
               longitude={userLocation.long}
+              offsetLeft={-20}
+              offsetTop={-40}
             >
-              <img style={{width: "2rem"}} src="user-point.png" alt="marker" />
+              <img
+                style={{ width: "2rem" }}
+                src="user-point.png"
+                alt="marker"
+              />
             </Marker>
           )}
 

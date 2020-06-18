@@ -14,6 +14,7 @@ const LocationsSchema = new Schema({
   logo: String,
   addedBy: String,
   lastEdit: String,
+  googleId: String,
 });
 
 const Locations = mongoose.model("Locations", LocationsSchema);

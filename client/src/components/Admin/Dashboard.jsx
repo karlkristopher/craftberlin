@@ -60,6 +60,7 @@ class Dashboard extends Component {
         addedBy,
         lastEdit,
         coordinates,
+        googleId
       } = loc;
       return (
         <tr key={loc._id}>
@@ -87,6 +88,7 @@ class Dashboard extends Component {
             </button>
           </th>
           <td>{name}</td>
+          <td>{googleId}</td>
           <td>
             [{coordinates[0]}, {coordinates[1]}]
           </td>
@@ -105,7 +107,8 @@ class Dashboard extends Component {
     return (
       <div>
         <div>
-          <Link to="/admin/add">Add a Location</Link>
+          <Link to="/admin/add">Add a Custom Location</Link>
+          <Link to="/admin/google-add">Add a Google Location</Link>
         </div>
         <div className="table-responsive">
           <table className="table table-bordered  table-hover table-sm">
@@ -113,6 +116,7 @@ class Dashboard extends Component {
               <tr>
                 <th scope="col">Change</th>
                 <th scope="col">Name</th>
+                <th scope="col">Google Place ID</th>
                 <th scope="col">Coordinates</th>
                 <th scope="col">Address</th>
                 <th scope="col">Google Maps Link</th>

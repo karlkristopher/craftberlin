@@ -28,6 +28,7 @@ router.post("/", loginCheck(), (req, res) => {
     addedBy,
     latitude,
     longitude,
+    googleId,
   } = req.body;
 
   Locations.create({
@@ -41,6 +42,7 @@ router.post("/", loginCheck(), (req, res) => {
     logo,
     addedBy,
     coordinates: [latitude, longitude],
+    googleId,
   })
     .then((location) => {
       console.log(`adding location: ${location}`);
@@ -67,6 +69,7 @@ router.put("/:id", loginCheck(), (req, res) => {
     lastEdit,
     latitude,
     longitude,
+    
   } = req.body;
 
   Locations.findByIdAndUpdate(
@@ -82,6 +85,7 @@ router.put("/:id", loginCheck(), (req, res) => {
       logo,
       lastEdit,
       coordinates: [latitude, longitude],
+     
     },
     { new: true }
   )
