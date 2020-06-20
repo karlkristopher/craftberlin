@@ -55,12 +55,25 @@ class Dashboard extends Component {
         website,
         googleMaps,
         bar,
-        bottleShop,
         tapRoom,
-        addedBy,
-        lastEdit,
+        bottleShop,
         coordinates,
+        phone,
+        placeId,
+        rating,
+        totalRatings,
+        types,
+        status,
+        lastEdit,
+        addedBy,
       } = loc;
+
+      const displayTypes = types.map((type, i) => {
+        return (
+          <li key={i}>{type}</li>
+        )
+      })
+
       return (
         <tr key={loc._id}>
           <th scope="row">
@@ -87,15 +100,20 @@ class Dashboard extends Component {
             </button>
           </th>
           <td>{name}</td>
+          <td>{placeId}</td>
           <td>
             [{coordinates[0]}, {coordinates[1]}]
           </td>
           <td>{address}</td>
-          <td>{googleMaps}</td>
-          <td>{website}</td>
+          <td>{phone}</td>
+          <td><a href={googleMaps}>Link</a></td> 
+          <td>{rating} ({totalRatings})</td>
+          <td>{status}</td>
+          <td><a href={website}>Link</a></td> 
           <td>{tapRoom ? "Yes" : "No"}</td>
           <td>{bar ? "Yes" : "No"}</td>
           <td>{bottleShop ? "Yes" : "No"}</td>
+          <td><ul>{displayTypes}</ul></td>
           <td>{addedBy}</td>
           <td>{lastEdit ? lastEdit : "No edits"} </td>
         </tr>
@@ -107,19 +125,31 @@ class Dashboard extends Component {
         <div>
           <Link to="/admin/add">Add a Location</Link>
         </div>
+        <div>
+          <p>Additional fields that exist but not shown:</p>
+          <ul>
+            <li>Detailed Address Object</li>
+            <li>Detailed Hours Object (for open now) + General Hours for Display</li>
+          </ul>
+        </div>
         <div className="table-responsive">
           <table className="table table-bordered  table-hover table-sm">
             <thead className="thead-dark">
               <tr>
                 <th scope="col">Change</th>
                 <th scope="col">Name</th>
+                <th scope="col">Google Place ID</th>
                 <th scope="col">Coordinates</th>
                 <th scope="col">Address</th>
+                <th scope="col">Phone</th>
                 <th scope="col">Google Maps Link</th>
+                <th scope="col">Google Rating (#)</th>
+                <th scope="col">Status<br /> (Oper, Temp_Cls, Perm_Cls)</th>
                 <th scope="col">Website</th>
                 <th scope="col">TapRoom</th>
                 <th scope="col">Bar</th>
                 <th scope="col">Shop</th>
+                <th scope="col">Types from Google</th>
                 <th scope="col">Added By</th>
                 <th scope="col">Last Edited By</th>
               </tr>

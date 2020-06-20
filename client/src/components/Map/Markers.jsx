@@ -16,13 +16,14 @@ const Marker1 = styled.button`
 export default class Markers extends PureComponent {
   render() {
     const { locations, setSelectedLocation } = this.props;
-   
 
     return locations.map((location) => (
       <Marker
         latitude={location.coordinates[0]}
         longitude={location.coordinates[1]}
         key={location._id}
+        offsetLeft={-25}
+        offsetTop={-40}
       >
         <Marker1
           onClick={(e) => {

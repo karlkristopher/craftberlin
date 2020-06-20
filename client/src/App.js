@@ -66,7 +66,6 @@ class App extends Component {
                   <AddLocations
                     user={this.state.user}
                     setUser={this.setUser}
-                    submitPost={this.handleSubmitPost}  //Not needed?
                     {...props}
                   />
                 );
