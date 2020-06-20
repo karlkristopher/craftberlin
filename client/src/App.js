@@ -11,7 +11,6 @@ import NotFound from "./components/NotFound";
 import Admin from "./components/Admin/Admin";
 import SignUp from "./components/Admin/SignUp";
 import AddLocations from "./components/Admin/AddLocation";
-import AddGoogleLocations from "./components/Admin/AddGoogleLocations";
 import EditLocations from "./components/Admin/EditLocation"
 
 
@@ -65,23 +64,6 @@ class App extends Component {
               if (this.state.user.role === "admin") {
                 return (
                   <AddLocations
-                    user={this.state.user}
-                    setUser={this.setUser}
-                    {...props}
-                  />
-                );
-              } else {
-                return <Redirect to="/" />;
-              }
-            }}
-          />
-          <Route
-            exact
-            path="/admin/google-add"
-            render={(props) => {
-              if (this.state.user.role === "admin") {
-                return (
-                  <AddGoogleLocations
                     user={this.state.user}
                     setUser={this.setUser}
                     {...props}

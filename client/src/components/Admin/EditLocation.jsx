@@ -14,6 +14,10 @@ class EditLocations extends Component {
     bar: false,
     tapRoom: false,
     bottleShop: false,
+    status: [],
+    phone: "",
+    status: "",
+    types: [],
   };
 
   componentDidMount(){
@@ -21,8 +25,8 @@ class EditLocations extends Component {
     axios
       .get(`/api/locations/${id}`)
       .then((response) => {
-        const {name, bar, address, googleMaps, coordinates, tapRoom, bottleShop, website } = response.data
-        this.setState({ name, bar, address, googleMaps, latitude: coordinates[0], longitude: coordinates[1], tapRoom, bottleShop, website});
+        const {name, bar, address, googleMaps, coordinates, tapRoom, bottleShop, website, types, status, phone } = response.data
+        this.setState({ name, bar, address, googleMaps, latitude: coordinates[0], longitude: coordinates[1], tapRoom, bottleShop, website,  types, status, phone});
       })
       .catch((err) => {
         if (err.response.status === 400) {
@@ -79,9 +83,10 @@ class EditLocations extends Component {
 
 
   render() {
+    console.log(this.state.types)
     return (
       <div className="container mt-3">
-        <h2>Add a Location</h2>
+        <h3>Edit Location</h3>
         <LocationChange
           handleSubmit={this.handleSubmitEdit} input={this.state} handleChange={this.handleChange} handleCheck={this.handleCheck}
         />

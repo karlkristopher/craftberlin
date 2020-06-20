@@ -1,6 +1,10 @@
 import React from "react";
 
 const LocationChange = (props) => {
+  const displayTypes = props.input.types.map((type, i) => {
+    return <li key={i.toString()}>{type}</li>;
+  });
+
   return (
     <>
       <form onSubmit={props.handleSubmit}>
@@ -16,30 +20,12 @@ const LocationChange = (props) => {
             onChange={props.handleChange}
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="latitude">Coordinates (Latitude)</label>
-          <input
-            type="number"
-            className="form-control"
-            id="latitude"
-            name="latitude"
-            placeholder="Enter Latitude as number (N+ S-)"
-            value={props.input.latitude}
-            onChange={props.handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="longitude">Coordinates (Longitude)</label>
-          <input
-            type="number"
-            className="form-control"
-            id="longitude"
-            name="longitude"
-            placeholder="Enter Longitude as number (E+ W-)"
-            value={props.input.longitude}
-            onChange={props.handleChange}
-          />
-        </div>
+        {displayTypes.length > 0 && (
+          <div>
+            <p>Google Type Suggestions:</p>
+            <ul>{displayTypes}</ul>
+          </div>
+        )}
         <div className="form-check">
           <input
             type="checkbox"
@@ -80,6 +66,46 @@ const LocationChange = (props) => {
             Bottle Shop?
           </label>
         </div>
+
+        <div className="form-group">
+          <label htmlFor="status">Status</label>
+          <select
+            className="custom-select"
+            id="status"
+            name="status"
+            value={props.input.status}
+            onChange={props.handleChange}
+          >
+            <option value="">Select Status</option>
+            <option value="OPERATIONAL">Operational</option>
+            <option value="CLOSED_TEMPORARILY">Temp Closed</option>
+            <option value="CLOSED_PERMANENTLY">Perm Closed</option>
+          </select>
+        </div>
+        <div className="form-group">
+          <label htmlFor="latitude">Coordinates (Latitude)</label>
+          <input
+            type="number"
+            className="form-control"
+            id="latitude"
+            name="latitude"
+            placeholder="Enter Latitude as number (N+ S-)"
+            value={props.input.latitude}
+            onChange={props.handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="longitude">Coordinates (Longitude)</label>
+          <input
+            type="number"
+            className="form-control"
+            id="longitude"
+            name="longitude"
+            placeholder="Enter Longitude as number (E+ W-)"
+            value={props.input.longitude}
+            onChange={props.handleChange}
+          />
+        </div>
         <div className="form-group">
           <label htmlFor="address">Address</label>
           <input
@@ -101,6 +127,18 @@ const LocationChange = (props) => {
             id="googleMaps"
             placeholder="Enter Google Maps Link"
             value={props.input.googleMaps}
+            onChange={props.handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="phone">Phone #</label>
+          <input
+            type="text"
+            className="form-control"
+            name="phone"
+            id="phone"
+            placeholder="Enter Phone #"
+            value={props.input.phone}
             onChange={props.handleChange}
           />
         </div>

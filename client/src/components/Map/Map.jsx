@@ -77,7 +77,7 @@ class Map extends Component {
   }
 
   render() {
-    console.log(navigator.geolocation);
+console.log(this.state.allLocations)
     const { allLocations, viewport, userLocation } = this.state;
     const { barCheck, bottleShopCheck, tapRoomCheck } = this.props;
     const displayMarkers = allLocations.filter((location) => {
