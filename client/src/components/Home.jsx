@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 import Map from "./Map/Map";
-import Content from "./Map/Content";
 import CheckBox from "./Checkbox";
 
 const SectionWrap = styled.section`
@@ -14,10 +13,6 @@ const SectionWrap = styled.section`
 `;
 
 const MapDiv = styled.div`
-  width: 100vw;
-`;
-
-const ContentDiv = styled.div`
   width: 100vw;
 `;
 
@@ -60,9 +55,6 @@ class Home extends Component {
           <MapDiv>
             <Map barCheck={barCheck} bottleShopCheck={bottleShopCheck} tapRoomCheck={tapRoomCheck}/>
           </MapDiv>
-          <ContentDiv>
-            <Content />
-          </ContentDiv>
         </SectionWrap>
       </div>
     );
