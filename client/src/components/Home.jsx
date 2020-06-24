@@ -7,6 +7,8 @@ import CheckBox from "./Checkbox";
 const SectionWrap = styled.section`
   display: flex;
   flex-wrap: wrap;
+  position: fixed;
+  z-index: 1;
   div {
     /* margin: 1rem; */
   }
