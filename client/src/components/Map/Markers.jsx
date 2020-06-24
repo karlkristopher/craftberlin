@@ -8,8 +8,8 @@ const Marker1 = styled.button`
   border: none;
   cursor: pointer;
   img {
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
   }
 `;
 
@@ -22,8 +22,8 @@ export default class Markers extends PureComponent {
         latitude={location.coordinates[0]}
         longitude={location.coordinates[1]}
         key={location._id}
-        offsetLeft={-25}
-        offsetTop={-40}
+        offsetLeft={-15}
+        offsetTop={-15}
       >
         <Marker1
           onClick={(e) => {
