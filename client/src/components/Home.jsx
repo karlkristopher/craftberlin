@@ -44,7 +44,7 @@ class Home extends Component {
       <div>
         <Head>
           <div>
-            <img src="/logo.svg" />
+            <img src={"./logo.svg"} />
           </div>
           <div>
            <CheckBox name="barCheck" value="Bars" checked={barCheck} onChange={this.handleCheck}/>
