@@ -1,7 +1,12 @@
 # Berlin Craft Beer
 
+* *Still under construction, check back soon for final deployed version* 
+
+---
 * A directory of craft beer bars, brewhouses, and bottleshops around Berlin.
 * Full stack MERN stack web application with the help of the Mapbox & Google Places APIs. 
+
+
 
 
 ## Setup
