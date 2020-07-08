@@ -44,13 +44,13 @@ npm install
 
 Starting Backend Server (Express.js + MongoDB).
 
-```
+```console
 sudo service mongodb start
 npm start
 ```
 
 Starting Frontend Server (React.js).
-```
+```console
 cd client
 npm start
 ```
