@@ -42,14 +42,14 @@ npm install
 
 #### Run the following commands from the root folder.
 
-Starting Backend Server (Express.js + MongoDB).
+For Backend Server (Express.js + MongoDB).
 
 ```console
 sudo service mongodb start
 npm start
 ```
 
-Starting Frontend Server (React.js).
+For Frontend Server (React.js).
 ```console
 cd client
 npm start
