@@ -14,7 +14,6 @@ class EditLocations extends Component {
     bar: false,
     tapRoom: false,
     bottleShop: false,
-    status: [],
     phone: "",
     status: "",
     types: [],
