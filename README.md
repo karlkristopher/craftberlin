@@ -55,7 +55,7 @@ cd client
 npm start
 ```
 
-## Adding / Managing Locations
+## Managing Locations
 
 ### Create Admin Account
 
