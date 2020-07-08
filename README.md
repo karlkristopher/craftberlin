@@ -65,5 +65,5 @@ npm start
 
 ### Accessing Admin Account
 
-1. Go to [http://localhost:3000/admin/](http://localhost:3000/admin/) and log in with your credentials.
+1. Go to [http://localhost:3000/admin](http://localhost:3000/admin/) and log in with your credentials.
 2. You will be directed to a dashboard showing existing locations, and a link to add additional locations.
