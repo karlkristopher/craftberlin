@@ -1,6 +1,6 @@
 # Berlin Craft Beer
 
-* *Still under construction, check back soon for final deployed version* 
+*Still under construction, check back soon for final deployed version* 
 
 ---
 * A directory of craft beer bars, brewhouses, and bottleshops around Berlin.
