@@ -4,13 +4,6 @@ import styled from "styled-components";
 import Map from "./Map/Map";
 import CheckBox from "./Checkbox";
 
-const SectionWrap = styled.section`
-  display: flex;
-  flex-wrap: wrap;
-  div {
-    /* margin: 1rem; */
-  }
-`;
 
 const MapDiv = styled.div`
   width: 100vw;
@@ -18,8 +11,15 @@ const MapDiv = styled.div`
 
 const Head = styled.header`
   display: flex;
+  justify-content: space-between;
   position: fixed;
+  width: 100%;
   z-index: 1;
+  padding: .5rem;
+
+  img {
+    width: 4rem;
+  }
 `;
 
 class Home extends Component {
@@ -39,13 +39,11 @@ class Home extends Component {
 
   render() {
 
-   const {barCheck, bottleShopCheck, tapRoomCheck} = this.state
+   const {barCheck, bottleShopCheck/* , tapRoomCheck */} = this.state
     return (
-      <div>
+      <>
         <Head>
-          <div>
             <img src={"./logo.svg"} />
-          </div>
           <div>
            <CheckBox name="barCheck" value="Bars" checked={barCheck} onChange={this.handleCheck}/>
            <CheckBox name="bottleShopCheck" value="Bottle Shops" checked={bottleShopCheck} onChange={this.handleCheck}/>
@@ -53,12 +51,12 @@ class Home extends Component {
           </div>
         </Head>
 
-        <SectionWrap>
+    
           <MapDiv>
             <Map barCheck={barCheck} bottleShopCheck={bottleShopCheck} />
           </MapDiv>
-        </SectionWrap>
-      </div>
+      
+      </>
     );
   }
 }

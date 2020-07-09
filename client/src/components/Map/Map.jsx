@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactMapGL, { Popup, Marker } from "react-map-gl";
+import styled from "styled-components";
 import axios from "axios";
 import dotenv from "dotenv";
 import LocationInfo from "./LocationInfo";
@@ -8,6 +9,16 @@ dotenv.config();
 
 //Mapbox Access Token
 const mapboxToken = process.env.REACT_APP_MAPBOX;
+
+const MapControls = styled.div`
+  display: flex;
+  position: fixed;
+  z-index: 1;
+  padding: 1rem 0.5rem;
+  bottom: .5rem;
+  right: .5rem;
+
+`;
 
 class Map extends Component {
   state = {
@@ -95,7 +106,9 @@ class Map extends Component {
           mapStyle="mapbox://styles/karlsec/ckbgcwiw44z3c1impwe1yfvpc"
           mapboxApiAccessToken={mapboxToken}
         >
-          <button onClick={this.setUserLocation}>My Location</button>
+          <MapControls>
+            <button onClick={this.setUserLocation}>My Location</button>
+          </MapControls>
           <Markers
             locations={displayMarkers}
             setSelectedLocation={this.setSelectedLocation}
