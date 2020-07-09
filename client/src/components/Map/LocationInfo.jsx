@@ -38,7 +38,7 @@ export default class LocationInfo extends PureComponent {
               Google Maps
             </a>
           </p>
-          {info.tapRoom && <p>Tap Room <Emoji symbol=" ✅" label="check"/></p>}
+          {/* {info.tapRoom && <p>Tap Room <Emoji symbol=" ✅" label="check"/></p>} */}
           {info.bottleShop && <p>Bottle Shop <Emoji symbol=" ✅" label="check"/></p>}
           {info.bar && <p>Bar <Emoji symbol=" ✅" label="check"/></p>}
         </div>

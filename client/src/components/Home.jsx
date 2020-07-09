@@ -26,7 +26,7 @@ class Home extends Component {
   state = {
     barCheck: false,
     bottleShopCheck: false,
-    tapRoomCheck: false,
+   /*  tapRoomCheck: false, */
   };
 
 
@@ -49,13 +49,13 @@ class Home extends Component {
           <div>
            <CheckBox name="barCheck" value="Bars" checked={barCheck} onChange={this.handleCheck}/>
            <CheckBox name="bottleShopCheck" value="Bottle Shops" checked={bottleShopCheck} onChange={this.handleCheck}/>
-           <CheckBox name="tapRoomCheck" value="TapRoom" checked={tapRoomCheck} onChange={this.handleCheck}/>
+          {/*  <CheckBox name="tapRoomCheck" value="TapRoom" checked={tapRoomCheck} onChange={this.handleCheck}/> */}
           </div>
         </Head>
 
         <SectionWrap>
           <MapDiv>
-            <Map barCheck={barCheck} bottleShopCheck={bottleShopCheck} tapRoomCheck={tapRoomCheck}/>
+            <Map barCheck={barCheck} bottleShopCheck={bottleShopCheck} />
           </MapDiv>
         </SectionWrap>
       </div>
