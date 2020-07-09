@@ -77,10 +77,10 @@ class Map extends Component {
   }
 
   render() {
-console.log(this.state.allLocations)
     const { allLocations, viewport, userLocation } = this.state;
     const { barCheck, bottleShopCheck, tapRoomCheck } = this.props;
     const displayMarkers = allLocations.filter((location) => {
+      if (!barCheck && !bottleShopCheck && !tapRoomCheck) return true;
       if (location.bar && barCheck) return true;
       if (location.tapRoom && tapRoomCheck) return true;
       if (location.bottleShop && bottleShopCheck) return true;

@@ -24,9 +24,9 @@ const Head = styled.header`
 
 class Home extends Component {
   state = {
-    barCheck: true,
-    bottleShopCheck: true,
-    tapRoomCheck: true,
+    barCheck: false,
+    bottleShopCheck: false,
+    tapRoomCheck: false,
   };
 
 
@@ -49,7 +49,7 @@ class Home extends Component {
           <div>
            <CheckBox name="barCheck" value="Bars" checked={barCheck} onChange={this.handleCheck}/>
            <CheckBox name="bottleShopCheck" value="Bottle Shops" checked={bottleShopCheck} onChange={this.handleCheck}/>
-           <CheckBox name="tapRoomCheck" value="TapRoom?" checked={tapRoomCheck} onChange={this.handleCheck}/>
+           <CheckBox name="tapRoomCheck" value="TapRoom" checked={tapRoomCheck} onChange={this.handleCheck}/>
           </div>
         </Head>
 
