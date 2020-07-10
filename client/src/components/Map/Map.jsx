@@ -3,6 +3,7 @@ import ReactMapGL, { Popup, Marker } from "react-map-gl";
 import styled from "styled-components";
 import axios from "axios";
 import dotenv from "dotenv";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LocationInfo from "./LocationInfo";
 import Markers from "./Markers";
 dotenv.config();
@@ -14,10 +15,19 @@ const MapControls = styled.div`
   display: flex;
   position: fixed;
   z-index: 1;
-  padding: 1rem 0.5rem;
-  bottom: .5rem;
-  right: .5rem;
+  padding: 1.5rem 0.5rem;
+  bottom: 0.7rem;
+  left: 0.3rem;
+`;
 
+const UserButton = styled.button`
+  background: none;
+  box-shadow: 0px 0px 0px transparent;
+  border: none;
+  text-shadow: 0px 0px 0px transparent;
+  :focus {
+    outline: none; 
+  }
 `;
 
 class Map extends Component {
@@ -107,7 +117,9 @@ class Map extends Component {
           mapboxApiAccessToken={mapboxToken}
         >
           <MapControls>
-            <button onClick={this.setUserLocation}>My Location</button>
+            <UserButton onClick={this.setUserLocation}>
+              <FontAwesomeIcon icon="map-marked-alt" size="lg" />
+            </UserButton>
           </MapControls>
           <Markers
             locations={displayMarkers}
@@ -120,11 +132,7 @@ class Map extends Component {
               offsetLeft={-20}
               offsetTop={-40}
             >
-              <img
-                style={{ width: "2rem" }}
-                src="user-point.png"
-                alt="marker"
-              />
+              <FontAwesomeIcon icon="map-marker" size="2x" />
             </Marker>
           )}
 

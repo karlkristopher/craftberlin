@@ -5,6 +5,7 @@ import "./App.css";
 
 
 //Components
+import "./components/Map/FontAwesome"
 import Nav from "./components/Navbar";
 import Home from "./components/Home";
 import NotFound from "./components/NotFound";
