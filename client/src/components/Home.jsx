@@ -26,6 +26,7 @@ const Logo = styled.div`
   h1 {
     margin-left: 1rem;
     font-size: 1.5rem;
+    user-select: none;
   }
 
   img {
