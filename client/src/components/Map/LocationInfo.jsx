@@ -40,7 +40,6 @@ export default class LocationInfo extends PureComponent {
     return (
       <PopupBox>
         <h2>{info.name}</h2>
-        <p>{info.address}</p>
         <p>
           Google Rating: {info.rating}{" "}
           <Reviews>
@@ -51,6 +50,7 @@ export default class LocationInfo extends PureComponent {
             )
           </Reviews>
         </p>
+        <p>{info.address}</p>
         <p>Hours</p>
         <ul>{openHours}</ul>
         <p>

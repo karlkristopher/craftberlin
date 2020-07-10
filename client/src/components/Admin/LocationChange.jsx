@@ -5,12 +5,8 @@ const LocationChange = (props) => {
     return <li key={i.toString()}>{type}</li>;
   });
 
-  console.log(props);
-
   const displayHours = props.input.openHoursText.map((ele, i) => {
-
     return <li key={i.toString()}>{ele}</li>
- 
   });
 
   

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import Dropdown from "react-bootstrap/Dropdown";
 
 import Map from "./Map/Map";
 import CheckBox from "./Checkbox";
@@ -15,10 +17,6 @@ const Head = styled.header`
   width: 100%;
   z-index: 1;
   padding: 0.5rem;
-
-  div {
-    flex-grow: 1;
-    }
 `;
 
 const Logo = styled.div`
@@ -35,11 +33,20 @@ const Logo = styled.div`
   }
 `;
 
+const Filters = styled.div`
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-end;
+  align-items: flex-start;
+`;
+
 class Home extends Component {
   state = {
     barCheck: false,
     bottleShopCheck: false,
-    /*  tapRoomCheck: false, */
   };
 
   handleCheck = (event) => {
@@ -50,29 +57,37 @@ class Home extends Component {
   };
 
   render() {
-    const { barCheck, bottleShopCheck /* , tapRoomCheck */ } = this.state;
+    const { barCheck, bottleShopCheck } = this.state;
     return (
       <>
         <Head>
           <Logo>
             <img src={"./logo.svg"} />
-            <h1>Berlin Craft Beer</h1>
+            <h1><b>Berlin Craft Beer</b></h1>
           </Logo>
-          <div>
-            <CheckBox
-              name="barCheck"
-              value="Bars"
-              checked={barCheck}
-              onChange={this.handleCheck}
-            />
-            <CheckBox
-              name="bottleShopCheck"
-              value="Bottle Shops"
-              checked={bottleShopCheck}
-              onChange={this.handleCheck}
-            />
-            {/*  <CheckBox name="tapRoomCheck" value="TapRoom" checked={tapRoomCheck} onChange={this.handleCheck}/> */}
-          </div>
+          <Filters>
+            <DropdownButton id="dropdown-item-button" variant="secondary" title="filter">
+              <Dropdown.Item as="button">
+                {" "}
+                <CheckBox
+                  name="barCheck"
+                  value="Bars"
+                  checked={barCheck}
+                  onChange={this.handleCheck}
+                />
+              </Dropdown.Item>
+              <Dropdown.Item as="button">
+                {" "}
+                <CheckBox
+                  name="bottleShopCheck"
+                  value="Bottle Shops"
+                  checked={bottleShopCheck}
+                  onChange={this.handleCheck}
+                />
+              </Dropdown.Item>
+            </DropdownButton>
+
+          </Filters>
         </Head>
 
         <MapDiv>
