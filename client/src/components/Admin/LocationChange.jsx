@@ -5,6 +5,15 @@ const LocationChange = (props) => {
     return <li key={i.toString()}>{type}</li>;
   });
 
+  console.log(props);
+
+  const displayHours = props.input.openHoursText.map((ele, i) => {
+
+    return <li key={i.toString()}>{ele}</li>
+ 
+  });
+
+  
   return (
     <>
       <form onSubmit={props.handleSubmit}>
@@ -39,19 +48,6 @@ const LocationChange = (props) => {
             Bar?
           </label>
         </div>
-{/*         <div className="form-check">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            id="tapRoom"
-            name="tapRoom"
-            checked={props.input.tapRoom}
-            onChange={props.handleCheck}
-          />
-          <label className="form-check-label" htmlFor="tapRoom">
-            Tap Room?
-          </label>
-        </div> */}
 
         <div className="form-check">
           <input
@@ -117,6 +113,10 @@ const LocationChange = (props) => {
             value={props.input.address}
             onChange={props.handleChange}
           />
+        </div>
+        <div className="form-group">
+          <label htmlFor="hours">Open Hours</label>
+          {props.input.openHoursText.length > 0 && <ul>{displayHours}</ul>}
         </div>
         <div className="form-group">
           <label htmlFor="googleMaps">Google Map Link</label>

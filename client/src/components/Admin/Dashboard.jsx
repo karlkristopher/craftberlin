@@ -55,7 +55,6 @@ class Dashboard extends Component {
         website,
         googleMaps,
         bar,
-        tapRoom,
         bottleShop,
         coordinates,
         phone,
@@ -66,11 +65,18 @@ class Dashboard extends Component {
         status,
         lastEdit,
         addedBy,
+        openHoursText
       } = loc;
 
       const displayTypes = types.map((type, i) => {
         return (
           <li key={i}>{type}</li>
+        )
+      })
+
+      const displayHours = openHoursText.map((ele, i) => {
+        return (
+          <li key={i}>{ele}</li>
         )
       })
 
@@ -106,11 +112,11 @@ class Dashboard extends Component {
           </td>
           <td>{address}</td>
           <td>{phone}</td>
+          <td><ul>{displayHours}</ul></td>
           <td><a href={googleMaps}>Link</a></td> 
           <td>{rating} ({totalRatings})</td>
           <td>{status}</td>
           <td><a href={website}>Link</a></td> 
-          <td>{tapRoom ? "Yes" : "No"}</td>
           <td>{bar ? "Yes" : "No"}</td>
           <td>{bottleShop ? "Yes" : "No"}</td>
           <td><ul>{displayTypes}</ul></td>
@@ -142,11 +148,11 @@ class Dashboard extends Component {
                 <th scope="col">Coordinates</th>
                 <th scope="col">Address</th>
                 <th scope="col">Phone</th>
+                <th scope="col">Hours</th>
                 <th scope="col">Google Maps Link</th>
                 <th scope="col">Google Rating (#)</th>
                 <th scope="col">Status<br /> (Oper, Temp_Cls, Perm_Cls)</th>
                 <th scope="col">Website</th>
-                <th scope="col">TapRoom</th>
                 <th scope="col">Bar</th>
                 <th scope="col">Shop</th>
                 <th scope="col">Types from Google</th>

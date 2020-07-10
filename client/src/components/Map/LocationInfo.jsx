@@ -1,7 +1,8 @@
 import * as React from "react";
 import { PureComponent } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Emoji from "./Emoji";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const PopupBox = styled.div`
   padding-top: 0.8rem;
@@ -18,16 +19,46 @@ const PopupBox = styled.div`
     margin: 0.2rem 0rem;
     padding: 0px;
   }
+
+  li {
+    font-size: 0.7rem;
+  }
+`;
+
+const Reviews = styled.span`
+  font-size: 0.6rem;
 `;
 
 export default class LocationInfo extends PureComponent {
   render() {
     const { info } = this.props;
 
+    const openHours = info.openHoursText.map((ele, i) => {
+      return <li key={i.toString()}>{ele}</li>;
+    });
+
     return (
       <PopupBox>
         <h2>{info.name}</h2>
         <p>{info.address}</p>
+        <p>
+          Google Rating: {info.rating}{" "}
+          <Reviews>
+            (
+            {info.totalRatings == 1
+              ? `${info.totalRatings} review`
+              : `${info.totalRatings} reviews`}
+            )
+          </Reviews>
+        </p>
+        <p>Hours</p>
+        <ul>{openHours}</ul>
+        <p>
+          Phone:{" "}
+          <Link>
+            <a href={`tel:${info.phone}`}>{info.phone}</a>
+          </Link>
+        </p>
         <div>
           <p>
             <a target="_new" href={info.website}>
@@ -38,11 +69,17 @@ export default class LocationInfo extends PureComponent {
               Google Maps
             </a>
           </p>
-          {/* {info.tapRoom && <p>Tap Room <Emoji symbol=" ✅" label="check"/></p>} */}
-          {info.bottleShop && <p>Bottle Shop <Emoji symbol=" ✅" label="check"/></p>}
-          {info.bar && <p>Bar <Emoji symbol=" ✅" label="check"/></p>}
+          {info.bottleShop && (
+            <p>
+              Bottle Shop <FontAwesomeIcon icon="wine-bottle" />
+            </p>
+          )}
+          {info.bar && (
+            <p>
+              Bar <FontAwesomeIcon icon="glass-cheers" />
+            </p>
+          )}
         </div>
-        
       </PopupBox>
     );
   }

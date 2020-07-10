@@ -15,9 +15,9 @@ const MapControls = styled.div`
   display: flex;
   position: fixed;
   z-index: 1;
-  padding: 1rem 0.5rem;
-  bottom: 0.5rem;
-  right: 0.5rem;
+  padding: 1.5rem 0.5rem;
+  bottom: 0.7rem;
+  left: 0.3rem;
 `;
 
 const UserButton = styled.button`
@@ -118,7 +118,7 @@ class Map extends Component {
         >
           <MapControls>
             <UserButton onClick={this.setUserLocation}>
-              <FontAwesomeIcon icon="map-marked-alt" size="2x" />
+              <FontAwesomeIcon icon="map-marked-alt" size="lg" />
             </UserButton>
           </MapControls>
           <Markers
