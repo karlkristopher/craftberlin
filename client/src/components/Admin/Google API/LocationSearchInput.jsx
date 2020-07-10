@@ -71,8 +71,6 @@ class LocationSearchInput extends React.Component {
         },
         (place, status) => {
           if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-            console.log(place);
-
             this.props.handleAutocomplete({
               name: place.name,
               address: place.vicinity,
