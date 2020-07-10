@@ -50,8 +50,8 @@ export default class LocationInfo extends PureComponent {
         <h2>{info.name}</h2>
         <p>Google Rating: {info.totalRatings ? gReview : "no reviews yet"}</p>
         <p>{info.address}</p>
-        <p>Hours</p>
-        <ul>{openHours}</ul>
+        {openHoursText.length > 0 && <p>Hours</p>}
+        {openHoursText.length > 0 && <ul>{openHours}</ul>}
         {info.phone && (
           <p>
             Phone:{" "}
