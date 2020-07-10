@@ -5,6 +5,7 @@ import "./App.css";
 
 
 //Components
+import ReactGA from 'react-ga';
 import "./components/Map/FontAwesome"
 import Nav from "./components/Navbar";
 import Home from "./components/Home";
@@ -25,6 +26,10 @@ body {
   margin: 1rem 0 0 0;
 }
 `;
+
+ReactGA.initialize('UA-172357978-1');
+ReactGA.pageview(window.location.pathname + window.location.search);
+
 
 
 class App extends Component {

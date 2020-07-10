@@ -15,7 +15,7 @@ class AddLocations extends Component {
     bar: false,
     tapRoom: false,
     bottleShop: false,
-    phone: "",
+    phone: null,
     openHoursText: [],
     openHoursDetail: null,
     placeId: "",

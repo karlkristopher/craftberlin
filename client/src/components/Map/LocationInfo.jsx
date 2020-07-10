@@ -37,28 +37,29 @@ export default class LocationInfo extends PureComponent {
       return <li key={i.toString()}>{ele}</li>;
     });
 
+    let gReview;
+
+    if (info.totalRatings == 1) {
+      gReview = `${info.rating} (${info.totalRatings} review)`;
+    } else {
+      gReview = `${info.rating} (${info.totalRatings} reviews)`;
+    }
+
     return (
       <PopupBox>
         <h2>{info.name}</h2>
-        <p>
-          Google Rating: {info.rating}{" "}
-          <Reviews>
-            (
-            {info.totalRatings == 1
-              ? `${info.totalRatings} review`
-              : `${info.totalRatings} reviews`}
-            )
-          </Reviews>
-        </p>
+        <p>Google Rating: {info.totalRatings ? gReview : "no reviews yet"}</p>
         <p>{info.address}</p>
         <p>Hours</p>
         <ul>{openHours}</ul>
-        <p>
-          Phone:{" "}
-          <Link>
-            <a href={`tel:${info.phone}`}>{info.phone}</a>
-          </Link>
-        </p>
+        {info.phone && (
+          <p>
+            Phone:{" "}
+            <Link>
+              <a href={`tel:${info.phone}`}>{info.phone}</a>
+            </Link>
+          </p>
+        )}
         <div>
           <p>
             <a target="_new" href={info.website}>
