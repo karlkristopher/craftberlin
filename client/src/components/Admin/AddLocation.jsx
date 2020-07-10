@@ -62,7 +62,7 @@ class AddLocations extends Component {
         googleMaps,
         website,
         bar,
-        tapRoom,
+      /*   tapRoom, */
         bottleShop,
         addedBy,
         longitude,
@@ -105,7 +105,7 @@ class AddLocations extends Component {
   };
 
   render() {
-    console.log(this.state);
+    
     return (
       <div className="container mt-3">
         <h3>Add a Location</h3>

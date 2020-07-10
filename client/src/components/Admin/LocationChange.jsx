@@ -39,7 +39,7 @@ const LocationChange = (props) => {
             Bar?
           </label>
         </div>
-        <div className="form-check">
+{/*         <div className="form-check">
           <input
             type="checkbox"
             className="form-check-input"
@@ -51,7 +51,7 @@ const LocationChange = (props) => {
           <label className="form-check-label" htmlFor="tapRoom">
             Tap Room?
           </label>
-        </div>
+        </div> */}
 
         <div className="form-check">
           <input
