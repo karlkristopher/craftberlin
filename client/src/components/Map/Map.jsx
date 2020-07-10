@@ -113,7 +113,7 @@ class Map extends Component {
         <ReactMapGL
           {...viewport}
           onViewportChange={(viewport) => this.setState({ viewport })}
-          mapStyle="mapbox://styles/karlsec/ckbgcwiw44z3c1impwe1yfvpc"
+          mapStyle="mapbox://styles/karlsec/ckcg9woc70wy51io0a8kv9fm0"
           mapboxApiAccessToken={mapboxToken}
         >
           <MapControls>
