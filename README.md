@@ -34,6 +34,7 @@ cd client
 npm install
 ```
 
+Third, change the Google Places API key found in client/public/index.html to your personal API key.
 
 ### Running BCB
 
