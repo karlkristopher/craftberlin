@@ -22,7 +22,7 @@ const Head = styled.header`
 const Logo = styled.div`
   display: flex;
   align-items: center;
-  flex-grow: 1;
+  flex-grow: 3;
   h1 {
     margin-left: 1rem;
     font-size: 1.5rem;
@@ -34,7 +34,7 @@ const Logo = styled.div`
 `;
 
 const Filters = styled.div`
-  flex-grow: 1;
+  flex-grow: 2;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
