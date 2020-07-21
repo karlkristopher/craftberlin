@@ -63,7 +63,7 @@ class Home extends Component {
       <>
         <Head>
           <Logo>
-            <img src={"./logo.svg"} />
+            <img src={"./logo.svg"} alt="berlin-craft logo" />
             <h1><b>Berlin Craft Beer</b></h1>
           </Logo>
           <Filters>
