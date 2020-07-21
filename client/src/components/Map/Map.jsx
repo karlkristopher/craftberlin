@@ -102,8 +102,9 @@ class Map extends Component {
     const { barCheck, bottleShopCheck, tapRoomCheck } = this.props;
     const displayMarkers = allLocations.filter((location) => {
       if (!barCheck && !bottleShopCheck && !tapRoomCheck) return true;
+      if (!location.bar && (barCheck && bottleShopCheck)) return false;
+      if (!location.bottleShop && (barCheck && bottleShopCheck)) return false;
       if (location.bar && barCheck) return true;
-      if (location.tapRoom && tapRoomCheck) return true;
       if (location.bottleShop && bottleShopCheck) return true;
       return false;
     });
