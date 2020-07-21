@@ -1,6 +1,5 @@
 import * as React from "react";
 import { PureComponent } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -53,7 +52,7 @@ export default class LocationInfo extends PureComponent {
         {info.openHoursText.length > 0 && <ul>{openHours}</ul>}
         {info.phone && (
           <p>
-            Phone: <Link to={`tel:${phoneLink}`}>{info.phone}</Link>
+            Phone: <a href={`tel:${phoneLink}`}>{info.phone}</a>
           </p>
         )}
         <div>
