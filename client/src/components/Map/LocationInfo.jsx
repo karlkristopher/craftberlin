@@ -25,9 +25,6 @@ const PopupBox = styled.div`
   }
 `;
 
-const Reviews = styled.span`
-  font-size: 0.6rem;
-`;
 
 export default class LocationInfo extends PureComponent {
   render() {
@@ -39,7 +36,7 @@ export default class LocationInfo extends PureComponent {
 
     let gReview;
 
-    if (info.totalRatings == 1) {
+    if (info.totalRatings === 1) {
       gReview = `${info.rating} (${info.totalRatings} review)`;
     } else {
       gReview = `${info.rating} (${info.totalRatings} reviews)`;
