@@ -25,7 +25,6 @@ const PopupBox = styled.div`
   }
 `;
 
-
 export default class LocationInfo extends PureComponent {
   render() {
     const { info } = this.props;
@@ -42,6 +41,9 @@ export default class LocationInfo extends PureComponent {
       gReview = `${info.rating} (${info.totalRatings} reviews)`;
     }
 
+    //Create clickable phone link. Could be added to the backend at some point.
+    let phoneLink = info.phone.replace(/\s/g, "");
+
     return (
       <PopupBox>
         <h2>{info.name}</h2>
@@ -51,10 +53,7 @@ export default class LocationInfo extends PureComponent {
         {info.openHoursText.length > 0 && <ul>{openHours}</ul>}
         {info.phone && (
           <p>
-            Phone:{" "}
-            <Link>
-              <a href={`tel:${info.phone}`}>{info.phone}</a>
-            </Link>
+            Phone: <Link to={`tel:${phoneLink}`}>{info.phone}</Link>
           </p>
         )}
         <div>
