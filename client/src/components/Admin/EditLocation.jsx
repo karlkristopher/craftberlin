@@ -82,7 +82,6 @@ class EditLocations extends Component {
 
 
   render() {
-    console.log(this.state.types)
     return (
       <div className="container mt-3">
         <h3>Edit Location</h3>

@@ -39,7 +39,7 @@ class Map extends Component {
       height: "100vh",
       latitude: 52.52,
       longitude: 13.405,
-      zoom: 12,
+      zoom: 11,
     },
     selectedLocation: null,
     userLocation: {},

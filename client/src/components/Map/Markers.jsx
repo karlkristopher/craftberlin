@@ -8,8 +8,7 @@ const Marker1 = styled.button`
   border: none;
   cursor: pointer;
   img {
-    width: 30px;
-    height: 30px;
+    width: 7vw;
   }
 `;
 
