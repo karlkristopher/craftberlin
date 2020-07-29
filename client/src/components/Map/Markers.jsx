@@ -7,9 +7,16 @@ const Marker1 = styled.button`
   background: none;
   border: none;
   cursor: pointer;
+
   img {
-    width: 7vw;
+    width: 2vw;
   }
+  @media (max-width: 480px) {
+    img {
+      width: 7vw;
+    }
+  }
+
 `;
 
 export default class Markers extends PureComponent {
