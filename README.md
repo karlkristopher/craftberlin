@@ -1,7 +1,8 @@
 # Berlin Craft Beer
 
 * A directory of craft beer bars, brewhouses, and bottleshops around Berlin.
-* MERN stack web application with the help of the Mapbox & Google Places APIs. 
+* MERN stack web application with the help of the Mapbox & Google Places APIs.
+* [Click here to see working version of deployed project.](https://berlin-craft.herokuapp.com/)
 
 
 
