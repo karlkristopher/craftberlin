@@ -41,7 +41,12 @@ export default class LocationInfo extends PureComponent {
     }
 
     //Create clickable phone link. Could be added to the backend at some point.
-    let phoneLink = info.phone.replace(/\s/g, "");
+
+    let phoneLink;
+
+    if (info.phone) {
+      phoneLink = info.phone.replace(/\s/g, "");
+    }
 
     return (
       <PopupBox>
