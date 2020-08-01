@@ -6,7 +6,8 @@
 
 
 ## Demo
-<img src="https://res.cloudinary.com/karlkris/image/upload/v1590504770/github/demo_sum4e3.gif" alt="swapsies_demo"  />
+<img src="https://res.cloudinary.com/karlkris/image/upload/v1596297702/github/berlincraft-demo_gnsmig.gif" alt="berlincraft_demo" width="300"  />
+
 
 ## Setup
 
