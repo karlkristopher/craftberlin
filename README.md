@@ -5,7 +5,8 @@
 * [Click here to see working version of deployed project.](https://berlin-craft.herokuapp.com/)
 
 
-
+## Demo
+<img src="https://res.cloudinary.com/karlkris/image/upload/v1590504770/github/demo_sum4e3.gif" alt="swapsies_demo"  />
 
 ## Setup
 
