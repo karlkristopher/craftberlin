@@ -17,7 +17,7 @@ const Autocomplete = ({
   loading,
 }) => (
   <div>
-    <input
+    <input 
       {...getInputProps({
         placeholder: "Search Places ...",
         className: "location-search-input",
@@ -25,7 +25,7 @@ const Autocomplete = ({
     />
     <div className="autocomplete-dropdown-container">
       {loading && <div>Loading...</div>}
-      {suggestions.map((suggestion) => {
+      {suggestions.map((suggestion, i) => {
         const className = suggestion.active
           ? "suggestion-item--active"
           : "suggestion-item";
@@ -34,11 +34,12 @@ const Autocomplete = ({
           ? { backgroundColor: "#fafafa", cursor: "pointer" }
           : { backgroundColor: "#ffffff", cursor: "pointer" };
         return (
-          <div
-            {...getSuggestionItemProps(suggestion, {
+          <div key={i} // Key does not work. 
+             {...getSuggestionItemProps(suggestion, {
               className,
               style,
             })}
+    
           >
             <span>{suggestion.description}</span>
           </div>
@@ -58,7 +59,6 @@ class LocationSearchInput extends React.Component {
   handleSelect = async (address) => {
     try {
       const results = await geocodeByAddress(address);
-      // console.log(results[0].place_id);
       const latLng = await getLatLng(results[0]);
       this.props.handleAutocomplete({
         longitude: latLng.lng,
@@ -70,7 +70,17 @@ class LocationSearchInput extends React.Component {
           placeId: results[0].place_id,
         },
         (place, status) => {
+
           if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+            console.log("phone", place.formatted_phone_number)
+            console.log("place", place)
+
+            let revisedHours = [];
+
+            if (typeof(place.opening_hours.weekday_text) !== undefined) {
+              revisedHours = place.opening_hours.weekday_text;
+            } 
+
             this.props.handleAutocomplete({
               name: place.name,
               address: place.vicinity,
@@ -78,9 +88,9 @@ class LocationSearchInput extends React.Component {
               googleMaps: place.url,
               website: place.website,
               phone: place.formatted_phone_number,
-              openHoursText: place.opening_hours.weekday_text,
-              openHoursDetail: place.opening_hours.periods,
-              placeId: place.place_id,
+              openHoursText: revisedHours,
+/*               openHoursDetail: place.opening_hours.periods,
+ */              placeId: place.place_id,
               rating: place.rating,
               totalRatings: place.user_ratings_total,
               types: place.types,

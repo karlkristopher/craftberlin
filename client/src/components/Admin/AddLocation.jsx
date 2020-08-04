@@ -15,10 +15,10 @@ class AddLocations extends Component {
     bar: false,
     tapRoom: false,
     bottleShop: false,
-    phone: null,
-    openHoursText: [],
-    openHoursDetail: null,
-    placeId: "",
+    phone: "",
+    openHoursText: ["N/A"],
+/*     openHoursDetail: null,
+ */    placeId: "",
     rating: null,
     totalRatings: null,
     types: [],
@@ -42,8 +42,8 @@ class AddLocations extends Component {
       latitude,
       phone,
       openHoursText,
-      openHoursDetail,
-      isOpen,
+/*       openHoursDetail,
+ */      isOpen,
       rating,
       totalRatings,
       types,
@@ -67,8 +67,8 @@ class AddLocations extends Component {
         latitude,
         phone,
         openHoursText,
-        openHoursDetail,
-        isOpen,
+/*         openHoursDetail,
+ */        isOpen,
         rating,
         totalRatings,
         types,
@@ -84,6 +84,7 @@ class AddLocations extends Component {
   };
 
   handleAutocomplete = (event) => {
+    console.log(event)
     this.setState(event);
   };
 
@@ -103,6 +104,9 @@ class AddLocations extends Component {
   };
 
   render() {
+
+    console.log("selected location", this.state.selectedLocation)
+    console.log("weekday text", this.state.openHoursText)
     
     return (
       <div className="container mt-3">
