@@ -72,15 +72,9 @@ class LocationSearchInput extends React.Component {
         (place, status) => {
 
           if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-            console.log("phone", place.formatted_phone_number)
-            console.log("place", place)
+        
 
-            let revisedHours = [];
-
-            if (typeof(place.opening_hours.weekday_text) !== undefined) {
-              revisedHours = place.opening_hours.weekday_text;
-            } 
-
+        
             this.props.handleAutocomplete({
               name: place.name,
               address: place.vicinity,
@@ -88,7 +82,7 @@ class LocationSearchInput extends React.Component {
               googleMaps: place.url,
               website: place.website,
               phone: place.formatted_phone_number,
-              openHoursText: revisedHours,
+              openHoursText: place.opening_hours ? place.opening_hours.weekday_text : ["Hours Not Found"],
 /*               openHoursDetail: place.opening_hours.periods,
  */              placeId: place.place_id,
               rating: place.rating,

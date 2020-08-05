@@ -24,6 +24,12 @@ const PopupBox = styled.div`
   }
 `;
 
+const TempClosed = styled.p`
+  color: red;
+  font-weight: bold;
+  padding-bottom: 0.5rem;
+`;
+
 export default class LocationInfo extends PureComponent {
   render() {
     const { info } = this.props;
@@ -51,10 +57,13 @@ export default class LocationInfo extends PureComponent {
     return (
       <PopupBox>
         <h2>{info.name}</h2>
+        {info.status === "CLOSED_TEMPORARILY" && (
+          <TempClosed>Temporarily Closed</TempClosed>
+        )}
         <p>Google Rating: {info.totalRatings ? gReview : "no reviews yet"}</p>
         <p>{info.address}</p>
-        {info.openHoursText.length > 0 && <p>Hours</p>}
-        {info.openHoursText.length > 0 && <ul>{openHours}</ul>}
+        {info.openHoursText.length > 1 && <p>Hours</p>}
+        {info.openHoursText.length > 1 && <ul>{openHours}</ul>}
         {info.phone && (
           <p>
             Phone: <a href={`tel:${phoneLink}`}>{info.phone}</a>

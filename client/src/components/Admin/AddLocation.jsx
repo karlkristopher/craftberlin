@@ -16,7 +16,7 @@ class AddLocations extends Component {
     tapRoom: false,
     bottleShop: false,
     phone: "",
-    openHoursText: ["N/A"],
+    openHoursText: [""],
 /*     openHoursDetail: null,
  */    placeId: "",
     rating: null,
@@ -84,7 +84,6 @@ class AddLocations extends Component {
   };
 
   handleAutocomplete = (event) => {
-    console.log(event)
     this.setState(event);
   };
 
@@ -105,8 +104,6 @@ class AddLocations extends Component {
 
   render() {
 
-    console.log("selected location", this.state.selectedLocation)
-    console.log("weekday text", this.state.openHoursText)
     
     return (
       <div className="container mt-3">
