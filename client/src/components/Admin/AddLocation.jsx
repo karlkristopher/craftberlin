@@ -15,10 +15,10 @@ class AddLocations extends Component {
     bar: false,
     tapRoom: false,
     bottleShop: false,
-    phone: null,
-    openHoursText: [],
-    openHoursDetail: null,
-    placeId: "",
+    phone: "",
+    openHoursText: [""],
+/*     openHoursDetail: null,
+ */    placeId: "",
     rating: null,
     totalRatings: null,
     types: [],
@@ -42,8 +42,8 @@ class AddLocations extends Component {
       latitude,
       phone,
       openHoursText,
-      openHoursDetail,
-      isOpen,
+/*       openHoursDetail,
+ */      isOpen,
       rating,
       totalRatings,
       types,
@@ -67,8 +67,8 @@ class AddLocations extends Component {
         latitude,
         phone,
         openHoursText,
-        openHoursDetail,
-        isOpen,
+/*         openHoursDetail,
+ */        isOpen,
         rating,
         totalRatings,
         types,
@@ -103,6 +103,7 @@ class AddLocations extends Component {
   };
 
   render() {
+
     
     return (
       <div className="container mt-3">

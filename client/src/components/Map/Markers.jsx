@@ -23,7 +23,11 @@ export default class Markers extends PureComponent {
   render() {
     const { locations, setSelectedLocation } = this.props;
 
-    return locations.map((location) => (
+    const filteredLocations = locations.filter(location => {
+      return (location.status === "OPERATIONAL" || location.status === "CLOSED_TEMPORARILY")
+    })
+
+    return filteredLocations.map((location) => (
       <Marker
         latitude={location.coordinates[0]}
         longitude={location.coordinates[1]}
