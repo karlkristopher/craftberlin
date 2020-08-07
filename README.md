@@ -5,9 +5,12 @@
 * [Click here to see working version of deployed project.](https://berlin-craft.herokuapp.com/)
 
 
-## Demo
+## Demo (End User)
 <img src="https://res.cloudinary.com/karlkris/image/upload/v1596297702/github/berlincraft-demo_gnsmig.gif" alt="berlincraft_demo" width="300"  />
 
+## Demo (Add a Location)
+> Locations autopopulate with Google Places API
+<img src="https://res.cloudinary.com/karlkris/image/upload/v1596836884/github/admin-demo_gnznfx.gif" alt="berlincraft_admindemo" width="700"  />
 
 ## Setup
 
