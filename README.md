@@ -2,15 +2,15 @@
 
 * Mobile-friendly directory of craft beer bars, brewhouses, and bottleshops around Berlin.
 * MERN stack web application with the help of the Mapbox & Google Places APIs.
-* [Click here to see working version of deployed project.](https://berlin-craft.herokuapp.com/)
+* Visit [www.berlincraft.beer](https://berlincraft.beer/) to see working version of deployed project.
 
 
 ## Demo (End User)
 <img src="https://res.cloudinary.com/karlkris/image/upload/v1596297702/github/berlincraft-demo_gnsmig.gif" alt="berlincraft_demo" width="300"  />
 
 ## Demo (Add a Location)
-> Locations autopopulate with Google Places API
-<img src="https://res.cloudinary.com/karlkris/image/upload/v1596836884/github/admin-demo_gnznfx.gif" alt="berlincraft_admindemo" width="700"  />
+* Locations autopopulate with Google Places API
+<img src="https://res.cloudinary.com/karlkris/image/upload/v1596836884/github/admin-demo_gnznfx.gif" alt="berlincraft_admindemo" width="800"  />
 
 ## Setup
 
