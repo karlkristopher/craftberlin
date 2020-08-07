@@ -27,6 +27,10 @@ const Logo = styled.div`
     margin-left: 1rem;
     font-size: 1.5rem;
     user-select: none;
+    visibility: hidden;
+    @media (min-width: 576px) {
+      visibility: visible;
+    }
   }
 
   img {
