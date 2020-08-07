@@ -19,7 +19,7 @@
 * [Node JS](https://nodejs.org/en/)
 * [npm](https://www.npmjs.com/get-npm)
 * [MongoDB](https://docs.mongodb.com/manual/installation/)
-* [Google Developers API Key](https://developers.google.com/maps/documentation/javascript/get-api-key)
+* [Google Developers API Key (Google Places API)](https://developers.google.com/maps/documentation/javascript/get-api-key)
 * [Mapbox API Key](https://docs.mapbox.com/api/)
 
 ### Get Started
