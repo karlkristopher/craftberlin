@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import ReactMapGL, { Popup, Marker } from "react-map-gl";
+/* import moment from 'moment'; */
+import moment from "moment-timezone";
 import styled from "styled-components";
 import axios from "axios";
 import dotenv from "dotenv";
@@ -26,7 +28,7 @@ const UserButton = styled.button`
   border: none;
   text-shadow: 0px 0px 0px transparent;
   :focus {
-    outline: none; 
+    outline: none;
   }
 `;
 
@@ -43,6 +45,16 @@ class Map extends Component {
     },
     selectedLocation: null,
     userLocation: {},
+
+    //Time of User will be set to Berlin Time
+    userTime: {
+      moment: undefined,
+      year: null,
+      month: null,
+      day: null,
+      hours: null,
+      minutes: null,
+    },
   };
 
   componentDidMount() {
@@ -54,6 +66,19 @@ class Map extends Component {
       .catch((err) => {
         console.log(err);
       });
+
+
+      // Below is under construction for an "Open Now" button.
+    this.setState({
+      userTime: {
+        moment: moment.tz("Europe/Berlin"),
+        year: moment.tz("Europe/Berlin").year(),
+        month: moment.tz("Europe/Berlin").month(),
+        day: moment.tz("Europe/Berlin").day(),
+        /*         hours: moment.tz("Europe/Berlin").hour(),
+        minutes: moment.tz("Europe/Berlin").minute(), */
+      },
+    });
   }
 
   setSelectedLocation = (location) => {
@@ -98,12 +123,79 @@ class Map extends Component {
   }
 
   render() {
-    const { allLocations, viewport, userLocation } = this.state;
-    const { barCheck, bottleShopCheck, tapRoomCheck } = this.props;
+    const { allLocations, viewport, userLocation, userTime } = this.state;
+    const { barCheck, bottleShopCheck, tapRoomCheck, showOpen } = this.props;
+
+
+    // Below is under construction for an "Open Now" button.
+    const openCheck = (location) => {
+      let isOpen = false;
+      let dayPassed = false;
+
+
+      let hours = location.openHoursDetail;
+      
+
+      for (
+        let i = 0;
+        i < hours.length && dayPassed === false && isOpen === false;
+        i++
+      ) {
+     /*    console.log(  userTime.year,
+          userTime.month,
+          hours[i].open.day,
+          hours[i].open.hours,
+          hours[i].open.minutes); */
+          console.log(  userTime.year,
+            userTime.month,
+            hours[i].close.day,
+            hours[i].close.hours,
+            hours[i].close.minutes);
+
+        if (userTime.day < hours[i].open.day) {
+          dayPassed = true;
+        }
+
+        console.log(moment([userTime.year,
+          userTime.month,
+          hours[i].close.day,
+          hours[i].close.hours,
+          hours[i].close.minutes
+          ]))
+
+        if (
+          moment.tz("Europe/Berlin").isBetween(
+            moment([
+              userTime.year,
+              userTime.month,
+              hours[i].open.day,
+              hours[i].open.hours,
+              hours[i].open.minutes
+            ]),
+            
+              moment([userTime.year,
+              userTime.month,
+              hours[i].close.day,
+              hours[i].close.hours,
+              hours[i].close.minutes
+              ]), 
+          )
+        ) {
+        
+          isOpen = true;
+        }
+      }
+
+      return isOpen;
+    };
+
+
+
     const displayMarkers = allLocations.filter((location) => {
-      if (!barCheck && !bottleShopCheck && !tapRoomCheck) return true;
-      if (!location.bar && (barCheck && bottleShopCheck)) return false;
-      if (!location.bottleShop && (barCheck && bottleShopCheck)) return false;
+/*       if (!openCheck(location) && showOpen) return false;
+ */      if (!barCheck && !bottleShopCheck && !tapRoomCheck) return true;
+      if (!location.bar && barCheck && bottleShopCheck) return false;
+      if (!location.bottleShop && barCheck && bottleShopCheck) return false;
       if (location.bar && barCheck) return true;
       if (location.bottleShop && bottleShopCheck) return true;
       return false;
@@ -122,11 +214,16 @@ class Map extends Component {
               <FontAwesomeIcon icon="map-marked-alt" size="lg" />
             </UserButton>
           </MapControls>
+
+          {/* Displays all Markers */}
           <Markers
             locations={displayMarkers}
             setSelectedLocation={this.setSelectedLocation}
+            userTime={userTime}
           />
-          {Object.keys(userLocation).length !== 0 && (
+
+            {/* Shows User Pin on Map */}
+           {Object.keys(userLocation).length !== 0 && (
             <Marker
               latitude={userLocation.lat}
               longitude={userLocation.long}
@@ -136,7 +233,7 @@ class Map extends Component {
               <FontAwesomeIcon icon="map-marker" size="2x" />
             </Marker>
           )}
-
+            {/* Shows Location Data on Click */}
           {this.renderPopup()}
         </ReactMapGL>
       </>
