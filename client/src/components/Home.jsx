@@ -52,6 +52,7 @@ class Home extends Component {
   state = {
     barCheck: false,
     bottleShopCheck: false,
+    showOpen: false,
   };
 
   handleCheck = (event) => {
@@ -62,16 +63,23 @@ class Home extends Component {
   };
 
   render() {
-    const { barCheck, bottleShopCheck } = this.state;
+    const { barCheck, bottleShopCheck, showOpen } = this.state;
+
     return (
       <>
         <Head>
           <Logo>
             <img src={"./logo.svg"} alt="berlin-craft logo" />
-            <h1><b>Berlin Craft Beer</b></h1>
+            <h1>
+              <b>Berlin Craft Beer</b>
+            </h1>
           </Logo>
           <Filters>
-            <DropdownButton id="dropdown-item-button" variant="secondary" title="filter">
+            <DropdownButton
+              id="dropdown-item-button"
+              variant="secondary"
+              title="filter"
+            >
               <Dropdown.Item as="button">
                 {" "}
                 <CheckBox
@@ -91,12 +99,25 @@ class Home extends Component {
                 />
               </Dropdown.Item>
             </DropdownButton>
-
           </Filters>
+          {/* <label>
+            <input
+              type="checkbox"
+              name="showOpen"
+              value="Show Open"
+              checked={showOpen}
+              onChange={this.handleCheck}
+            />
+            Show Open Only
+          </label> */}
         </Head>
 
         <MapDiv>
-          <Map barCheck={barCheck} bottleShopCheck={bottleShopCheck} />
+          <Map
+            barCheck={barCheck}
+            bottleShopCheck={bottleShopCheck}
+            showOpen={showOpen}
+          />
         </MapDiv>
       </>
     );
