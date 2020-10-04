@@ -2,7 +2,7 @@
 
 * Mobile-friendly directory of craft beer bars, brewhouses, and bottleshops around Berlin.
 * MERN stack web application with the help of the Mapbox & Google Places APIs.
-* Visit [www.berlincraft.beer](https://berlincraft.beer/) to see working version of deployed project.
+* [Click here](https://berlin-craft.herokuapp.com/) to see working version of deployed project.
 
 
 ## Demo (End User)
