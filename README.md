@@ -3,7 +3,7 @@
 * Mobile-friendly directory of craft beer bars, brewhouses, and bottleshops around Berlin.
 * **[Click here](https://berlin-craft.herokuapp.com/)** to see working version of deployed project.
 
-#### Built with:
+**Built with:**
 <p>
   <img src="https://img.shields.io/badge/react-61DAFB?style=flat-square&logo=react&logoColor=white&labelColor=2C2C30" alt="react-badge" height="22"  />
   <img src="https://img.shields.io/badge/node.js-339933?style=flat-square&logo=node.js&logoColor=white&labelColor=2C2C30" alt="nodejs-badge" height="22"  />
