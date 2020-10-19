@@ -1,8 +1,22 @@
 # Berlin Craft Beer
 
 * Mobile-friendly directory of craft beer bars, brewhouses, and bottleshops around Berlin.
-* MERN stack web application with the help of the Mapbox & Google Places APIs.
-* [Click here](https://berlin-craft.herokuapp.com/) to see working version of deployed project.
+* **[Click here](https://berlin-craft.herokuapp.com/)** to see working version of deployed project.
+
+#### Built with:
+<p>
+  <img src="https://img.shields.io/badge/react-61DAFB?style=flat-square&logo=react&logoColor=white&labelColor=2C2C30" alt="react-badge" height="22"  />
+  <img src="https://img.shields.io/badge/node.js-339933?style=flat-square&logo=node.js&logoColor=white&labelColor=2C2C30" alt="nodejs-badge" height="22"  />
+  <img src="https://img.shields.io/badge/ex-express-000000?style=flat-square&labelColor=2C2C30" alt="express-badge" height="22"  />
+  <img src="https://img.shields.io/badge/mongodb-47A248?style=flat-square&logo=mongodb&logoColor=white&labelColor=2C2C30" alt="mongodb-badge" height="22"  />
+</p>
+
+#### Integrated APIs:
+<p>
+  <img src="https://img.shields.io/badge/google%20places%20api-4285F4?style=flat-square&logo=google-maps&logoColor=white&labelColor=2C2C30" alt="google-badge" height="22"  />
+  <img src="https://img.shields.io/badge/mapbox%20api-000000?style=flat-square&logo=mapbox&logoColor=white&labelColor=2C2C30" alt="mapbox-badge" height="22"  />
+</p>
+
 
 
 ## Demo (End User)
