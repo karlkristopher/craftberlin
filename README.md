@@ -63,7 +63,6 @@ Third, change the Google Places API key found in client/public/index.html to you
 For Backend Server (Express.js + MongoDB).
 
 ```console
-sudo service mongodb start
 npm start
 ```
 
