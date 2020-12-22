@@ -1,6 +1,6 @@
 # Berlin Craft Beer
 
-* Mobile-friendly directory of craft beer bars, brewhouses, and bottleshops around Berlin.
+* Mobile-friendly directory of craft beer bars, brewhouses, and bottle shops around Berlin.
 * **[Click here](https://berlin-craft.herokuapp.com/)** to see working version of deployed project.
 
 #### Built with:
