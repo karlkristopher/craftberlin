@@ -10,8 +10,6 @@ const logger = require("morgan");
 const path = require("path");
 const cors = require("cors");
 
-app.use(cors());
-
 mongoose
   .connect(process.env.DB_URI, { useNewUrlParser: true })
   .then((x) => {
@@ -29,6 +27,7 @@ const debug = require("debug")(
 );
 
 const app = express();
+app.use(cors());
 
 const session = require("express-session");
 const passport = require("passport");
