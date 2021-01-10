@@ -1,20 +1,18 @@
 import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 import "./App.css";
 
-
 //Components
-import ReactGA from 'react-ga';
-import "./components/Map/FontAwesome"
+import ReactGA from "react-ga";
+import "./components/Map/FontAwesome";
 import Nav from "./components/Navbar";
 import Home from "./components/Home";
-import NotFound from "./components/NotFound";
+// import NotFound from "./components/NotFound";
 import Admin from "./components/Admin/Admin";
 import SignUp from "./components/Admin/SignUp";
 import AddLocations from "./components/Admin/AddLocation";
-import EditLocations from "./components/Admin/EditLocation"
-
+import EditLocations from "./components/Admin/EditLocation";
 
 const GlobalStyle = createGlobalStyle`
 html {
@@ -27,10 +25,8 @@ body {
 }
 `;
 
-ReactGA.initialize('UA-172357978-1');
+ReactGA.initialize("UA-172357978-1");
 ReactGA.pageview(window.location.pathname + window.location.search);
-
-
 
 class App extends Component {
   state = {
@@ -43,11 +39,10 @@ class App extends Component {
     });
   };
 
-
   render() {
     return (
       <>
-      <GlobalStyle />
+        <GlobalStyle />
         <Nav user={this.state.user} />
         <Switch>
           <Route
@@ -80,7 +75,7 @@ class App extends Component {
               }
             }}
           />
-           <Route
+          <Route
             exact
             path="/admin/edit/:id"
             render={(props) => {
@@ -107,7 +102,7 @@ class App extends Component {
             }}
           />
           <Route exact path="/" component={Home} />
-          <Route exact path="/:notfound" component={NotFound} />
+          <Route exact path="/:notfound" render={() => <Redirect to="/" />} />
         </Switch>
       </>
     );
