@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import LocationChange from "./LocationChange";
 import axios from "axios";
 
-
 class EditLocations extends Component {
   state = {
     name: "",
@@ -19,32 +18,66 @@ class EditLocations extends Component {
     types: [],
   };
 
-  componentDidMount(){
-    const id = this.props.match.params.id
+  componentDidMount() {
+    const id = this.props.match.params.id;
     axios
-      .get(`/api/locations/${id}`)
+      .get(`https://berlin-craft.herokuapp.com/api/locations/${id}`)
       .then((response) => {
-        const {name, bar, address, googleMaps, coordinates, tapRoom, bottleShop, website, types, status, phone } = response.data
-        this.setState({ name, bar, address, googleMaps, latitude: coordinates[0], longitude: coordinates[1], tapRoom, bottleShop, website,  types, status, phone});
+        const {
+          name,
+          bar,
+          address,
+          googleMaps,
+          coordinates,
+          tapRoom,
+          bottleShop,
+          website,
+          types,
+          status,
+          phone,
+        } = response.data;
+        this.setState({
+          name,
+          bar,
+          address,
+          googleMaps,
+          latitude: coordinates[0],
+          longitude: coordinates[1],
+          tapRoom,
+          bottleShop,
+          website,
+          types,
+          status,
+          phone,
+        });
       })
       .catch((err) => {
         if (err.response.status === 400) {
           this.setState({ error: "Locations not found" });
         }
       });
-
   }
 
   handleSubmitEdit = (event) => {
     event.preventDefault();
 
-    const { name, address, website, googleMaps, bar, tapRoom, bottleShop, longitude, latitude } = this.state;
+    const {
+      name,
+      address,
+      website,
+      googleMaps,
+      bar,
+      tapRoom,
+      bottleShop,
+      longitude,
+      latitude,
+    } = this.state;
 
-    const lastEdit = this.props.user.username
+    const lastEdit = this.props.user.username;
 
     const id = this.props.match.params.id;
     axios
-      .put(`/api/locations/${id}`, {
+      .put(`https://berlin-craft.herokuapp.com/api/locations/${id}`, {
         name,
         address,
         googleMaps,
@@ -54,7 +87,7 @@ class EditLocations extends Component {
         bottleShop,
         lastEdit,
         longitude,
-        latitude
+        latitude,
       })
       .then(() => {
         this.props.history.push("/admin");
@@ -80,13 +113,15 @@ class EditLocations extends Component {
     });
   };
 
-
   render() {
     return (
       <div className="container mt-3">
         <h3>Edit Location</h3>
         <LocationChange
-          handleSubmit={this.handleSubmitEdit} input={this.state} handleChange={this.handleChange} handleCheck={this.handleCheck}
+          handleSubmit={this.handleSubmitEdit}
+          input={this.state}
+          handleChange={this.handleChange}
+          handleCheck={this.handleCheck}
         />
       </div>
     );
