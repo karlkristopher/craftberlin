@@ -1,7 +1,7 @@
 # Berlin Craft Beer
 
 * Mobile-friendly directory of craft beer bars, brewhouses, and bottleshops around Berlin.
-* **[Click here](https://berlin-craft.herokuapp.com/)** to see working version of deployed project.
+* **[Click here](https://berlincraft-beer.netlify.app/)** to see working version of deployed project.
 
 #### Built with:
 <p>
@@ -16,6 +16,15 @@
   <img src="https://img.shields.io/badge/google%20places%20api-4285F4?style=flat-square&logo=google-maps&logoColor=white&labelColor=2C2C30" alt="google-badge" height="22"  />
   <img src="https://img.shields.io/badge/mapbox%20api-000000?style=flat-square&logo=mapbox&logoColor=white&labelColor=2C2C30" alt="mapbox-badge" height="22"  />
 </p>
+
+
+#### Client Deployment:
+<img src="https://img.shields.io/badge/netlify-00C7B7?style=flat-square&logo=netlify&logoColor=white&labelColor=2C2C30" alt="netlify-badge" height="22"  />
+
+#### Server Deployment:
+<img src="https://img.shields.io/badge/heroku-430098?style=flat-square&logo=heroku&logoColor=white&labelColor=2C2C30" alt="heroku-badge" height="22"  />
+
+
 
 
 
@@ -72,15 +81,17 @@ cd client
 npm start
 ```
 
+note: server is hosted independently of client. 
+
 ## Managing Locations
 
 ### Create Admin Account
 
-1. Go to [http://localhost:3000/admin/create](http://localhost:3000/admin/create).
+1. Go to <code>.../admin/create</code>.
 2. Create an account.
 3. Find created account in your database under the **admins** collection and change role from **"null"** to **"admin"**.
 
 ### Accessing Admin Account
 
-1. Go to [http://localhost:3000/admin](http://localhost:3000/admin/) and log in with your credentials.
+1. Go to <code>.../admin</code>) and log in with your credentials.
 2. You will be directed to a dashboard showing existing locations, and a link to add additional locations.
