@@ -4,11 +4,9 @@ import ReactMapGL, { Popup, Marker } from "react-map-gl";
 import moment from "moment-timezone";
 import styled from "styled-components";
 import axios from "axios";
-// import dotenv from "dotenv";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LocationInfo from "./LocationInfo";
 import Markers from "./Markers";
-// dotenv.config();
 
 const MapControls = styled.div`
   display: flex;
