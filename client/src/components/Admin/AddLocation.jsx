@@ -17,8 +17,8 @@ class AddLocations extends Component {
     bottleShop: false,
     phone: "",
     openHoursText: [""],
-/*     openHoursDetail: null,
- */    placeId: "",
+    /*     openHoursDetail: null,
+     */ placeId: "",
     rating: null,
     totalRatings: null,
     types: [],
@@ -42,8 +42,8 @@ class AddLocations extends Component {
       latitude,
       phone,
       openHoursText,
-/*       openHoursDetail,
- */      isOpen,
+      /*       openHoursDetail,
+       */ isOpen,
       rating,
       totalRatings,
       types,
@@ -54,7 +54,7 @@ class AddLocations extends Component {
     const addedBy = this.props.user.username;
 
     axios
-      .post("/api/locations", {
+      .post("https://berlin-craft.herokuapp.com/api/locations", {
         name,
         address,
         addressDetail,
@@ -67,8 +67,8 @@ class AddLocations extends Component {
         latitude,
         phone,
         openHoursText,
-/*         openHoursDetail,
- */        isOpen,
+        /*         openHoursDetail,
+         */ isOpen,
         rating,
         totalRatings,
         types,
@@ -103,8 +103,6 @@ class AddLocations extends Component {
   };
 
   render() {
-
-    
     return (
       <div className="container mt-3">
         <h3>Add a Location</h3>

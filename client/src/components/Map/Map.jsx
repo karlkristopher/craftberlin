@@ -4,14 +4,9 @@ import ReactMapGL, { Popup, Marker } from "react-map-gl";
 import moment from "moment-timezone";
 import styled from "styled-components";
 import axios from "axios";
-import dotenv from "dotenv";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LocationInfo from "./LocationInfo";
 import Markers from "./Markers";
-dotenv.config();
-
-//Mapbox Access Token
-const mapboxToken = process.env.REACT_APP_MAPBOX;
 
 const MapControls = styled.div`
   display: flex;
@@ -59,7 +54,7 @@ class Map extends Component {
 
   componentDidMount() {
     axios
-      .get(`/api/locations`)
+      .get(`https://berlin-craft.herokuapp.com/api/locations`)
       .then((response) => {
         this.setState({ allLocations: response.data });
       })
@@ -67,8 +62,7 @@ class Map extends Component {
         console.log(err);
       });
 
-
-      // Below is under construction for an "Open Now" button.
+    // Below is under construction for an "Open Now" button.
     this.setState({
       userTime: {
         moment: moment.tz("Europe/Berlin"),
@@ -124,76 +118,76 @@ class Map extends Component {
 
   render() {
     const { allLocations, viewport, userLocation, userTime } = this.state;
-    const { barCheck, bottleShopCheck, tapRoomCheck, showOpen } = this.props;
-
+    const { barCheck, bottleShopCheck, tapRoomCheck } = this.props;
 
     // Below is under construction for an "Open Now" button.
-    const openCheck = (location) => {
-      let isOpen = false;
-      let dayPassed = false;
+    // const openCheck = (location) => {
+    //   let isOpen = false;
+    //   let dayPassed = false;
 
+    //   let hours = location.openHoursDetail;
 
-      let hours = location.openHoursDetail;
-      
+    //   for (
+    //     let i = 0;
+    //     i < hours.length && dayPassed === false && isOpen === false;
+    //     i++
+    //   ) {
+    //     /*    console.log(  userTime.year,
+    //       userTime.month,
+    //       hours[i].open.day,
+    //       hours[i].open.hours,
+    //       hours[i].open.minutes); */
+    //     console.log(
+    //       userTime.year,
+    //       userTime.month,
+    //       hours[i].close.day,
+    //       hours[i].close.hours,
+    //       hours[i].close.minutes
+    //     );
 
-      for (
-        let i = 0;
-        i < hours.length && dayPassed === false && isOpen === false;
-        i++
-      ) {
-     /*    console.log(  userTime.year,
-          userTime.month,
-          hours[i].open.day,
-          hours[i].open.hours,
-          hours[i].open.minutes); */
-          console.log(  userTime.year,
-            userTime.month,
-            hours[i].close.day,
-            hours[i].close.hours,
-            hours[i].close.minutes);
+    //     if (userTime.day < hours[i].open.day) {
+    //       dayPassed = true;
+    //     }
 
-        if (userTime.day < hours[i].open.day) {
-          dayPassed = true;
-        }
+    //     console.log(
+    //       moment([
+    //         userTime.year,
+    //         userTime.month,
+    //         hours[i].close.day,
+    //         hours[i].close.hours,
+    //         hours[i].close.minutes,
+    //       ])
+    //     );
 
-        console.log(moment([userTime.year,
-          userTime.month,
-          hours[i].close.day,
-          hours[i].close.hours,
-          hours[i].close.minutes
-          ]))
+    //     if (
+    //       moment.tz("Europe/Berlin").isBetween(
+    //         moment([
+    //           userTime.year,
+    //           userTime.month,
+    //           hours[i].open.day,
+    //           hours[i].open.hours,
+    //           hours[i].open.minutes,
+    //         ]),
 
-        if (
-          moment.tz("Europe/Berlin").isBetween(
-            moment([
-              userTime.year,
-              userTime.month,
-              hours[i].open.day,
-              hours[i].open.hours,
-              hours[i].open.minutes
-            ]),
-            
-              moment([userTime.year,
-              userTime.month,
-              hours[i].close.day,
-              hours[i].close.hours,
-              hours[i].close.minutes
-              ]), 
-          )
-        ) {
-        
-          isOpen = true;
-        }
-      }
+    //         moment([
+    //           userTime.year,
+    //           userTime.month,
+    //           hours[i].close.day,
+    //           hours[i].close.hours,
+    //           hours[i].close.minutes,
+    //         ])
+    //       )
+    //     ) {
+    //       isOpen = true;
+    //     }
+    //   }
 
-      return isOpen;
-    };
-
-
+    //   return isOpen;
+    // };
 
     const displayMarkers = allLocations.filter((location) => {
-/*       if (!openCheck(location) && showOpen) return false;
- */      if (!barCheck && !bottleShopCheck && !tapRoomCheck) return true;
+      /*       if (!openCheck(location) && showOpen) return false;
+       */ if (!barCheck && !bottleShopCheck && !tapRoomCheck) return true;
       if (!location.bar && barCheck && bottleShopCheck) return false;
       if (!location.bottleShop && barCheck && bottleShopCheck) return false;
       if (location.bar && barCheck) return true;
@@ -207,7 +201,7 @@ class Map extends Component {
           {...viewport}
           onViewportChange={(viewport) => this.setState({ viewport })}
           mapStyle="mapbox://styles/karlsec/ckcg9woc70wy51io0a8kv9fm0"
-          mapboxApiAccessToken={mapboxToken}
+          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX}
         >
           <MapControls>
             <UserButton onClick={this.setUserLocation}>
@@ -222,8 +216,8 @@ class Map extends Component {
             userTime={userTime}
           />
 
-            {/* Shows User Pin on Map */}
-           {Object.keys(userLocation).length !== 0 && (
+          {/* Shows User Pin on Map */}
+          {Object.keys(userLocation).length !== 0 && (
             <Marker
               latitude={userLocation.lat}
               longitude={userLocation.long}
@@ -233,7 +227,7 @@ class Map extends Component {
               <FontAwesomeIcon icon="map-marker" size="2x" />
             </Marker>
           )}
-            {/* Shows Location Data on Click */}
+          {/* Shows Location Data on Click */}
           {this.renderPopup()}
         </ReactMapGL>
       </>

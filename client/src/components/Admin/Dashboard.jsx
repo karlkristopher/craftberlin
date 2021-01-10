@@ -9,7 +9,7 @@ class Dashboard extends Component {
 
   componentDidMount() {
     axios
-      .get(`/api/locations`)
+      .get(`https://berlin-craft.herokuapp.com/api/locations`)
       .then((response) => {
         this.setState({ allLocations: response.data });
       })
@@ -22,7 +22,7 @@ class Dashboard extends Component {
 
   deleteHandler() {
     axios
-      .get(`/api/locations`)
+      .get(`https://berlin-craft.herokuapp.com/api/locations`)
       .then((response) => {
         this.setState({ allLocations: response.data });
       })
@@ -35,7 +35,9 @@ class Dashboard extends Component {
 
   deleteItem = (event) => {
     axios
-      .delete(`/api/locations/${event.target.value}`)
+      .delete(
+        `https://berlin-craft.herokuapp.com/api/locations/${event.target.value}`
+      )
       .then((res) => {
         console.log("Location deleted:", res.data);
       })
@@ -65,20 +67,16 @@ class Dashboard extends Component {
         status,
         lastEdit,
         addedBy,
-        openHoursText
+        openHoursText,
       } = loc;
 
       const displayTypes = types.map((type, i) => {
-        return (
-          <li key={i}>{type}</li>
-        )
-      })
+        return <li key={i}>{type}</li>;
+      });
 
       const displayHours = openHoursText.map((ele, i) => {
-        return (
-          <li key={i}>{ele}</li>
-        )
-      })
+        return <li key={i}>{ele}</li>;
+      });
 
       return (
         <tr key={loc._id}>
@@ -112,14 +110,24 @@ class Dashboard extends Component {
           </td>
           <td>{address}</td>
           <td>{phone}</td>
-          <td><ul>{displayHours}</ul></td>
-          <td><a href={googleMaps}>Link</a></td> 
-          <td>{rating} ({totalRatings})</td>
+          <td>
+            <ul>{displayHours}</ul>
+          </td>
+          <td>
+            <a href={googleMaps}>Link</a>
+          </td>
+          <td>
+            {rating} ({totalRatings})
+          </td>
           <td>{status}</td>
-          <td><a href={website}>Link</a></td> 
+          <td>
+            <a href={website}>Link</a>
+          </td>
           <td>{bar ? "Yes" : "No"}</td>
           <td>{bottleShop ? "Yes" : "No"}</td>
-          <td><ul>{displayTypes}</ul></td>
+          <td>
+            <ul>{displayTypes}</ul>
+          </td>
           <td>{addedBy}</td>
           <td>{lastEdit ? lastEdit : "No edits"} </td>
         </tr>
@@ -135,7 +143,9 @@ class Dashboard extends Component {
           <p>Additional fields that exist but not shown:</p>
           <ul>
             <li>Detailed Address Object</li>
-            <li>Detailed Hours Object (for open now) + General Hours for Display</li>
+            <li>
+              Detailed Hours Object (for open now) + General Hours for Display
+            </li>
           </ul>
         </div>
         <div className="table-responsive">
@@ -151,7 +161,10 @@ class Dashboard extends Component {
                 <th scope="col">Hours</th>
                 <th scope="col">Google Maps Link</th>
                 <th scope="col">Google Rating (#)</th>
-                <th scope="col">Status<br /> (Oper, Temp_Cls, Perm_Cls)</th>
+                <th scope="col">
+                  Status
+                  <br /> (Oper, Temp_Cls, Perm_Cls)
+                </th>
                 <th scope="col">Website</th>
                 <th scope="col">Bar</th>
                 <th scope="col">Shop</th>
