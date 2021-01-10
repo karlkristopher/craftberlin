@@ -21,7 +21,7 @@
 #### Client Deployment:
 <img src="https://img.shields.io/badge/netlify-00C7B7?style=flat-square&logo=netlify&logoColor=white&labelColor=2C2C30" alt="netlify-badge" height="22"  />
 
-#### Backend Deployment:
+#### Server Deployment:
 <img src="https://img.shields.io/badge/heroku-430098?style=flat-square&logo=heroku&logoColor=white&labelColor=2C2C30" alt="heroku-badge" height="22"  />
 
 
