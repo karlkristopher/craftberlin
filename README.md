@@ -1,4 +1,5 @@
 # Berlin Craft Beer
+![Client Tests](https://github.com/karlkristopher/craftberlin/workflows/Client%20Tests/badge.svg)
 
 * Mobile-friendly directory of craft beer bars, brewhouses, and bottleshops around Berlin.
 * **[Click here](https://berlincraft-beer.netlify.app/)** to see working version of deployed project.
