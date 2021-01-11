@@ -16,16 +16,18 @@ const Marker1 = styled.button`
       width: 7vw;
     }
   }
-
 `;
 
 export default class Markers extends PureComponent {
   render() {
     const { locations, setSelectedLocation } = this.props;
 
-    const filteredLocations = locations.filter(location => {
-      return (location.status === "OPERATIONAL" || location.status === "CLOSED_TEMPORARILY")
-    })
+    const filteredLocations = locations.filter((location) => {
+      return (
+        location.status === "OPERATIONAL" ||
+        location.status === "CLOSED_TEMPORARILY"
+      );
+    });
 
     return filteredLocations.map((location) => (
       <Marker
