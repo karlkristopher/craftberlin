@@ -211,6 +211,7 @@ class Map extends Component {
 
           {/* Displays all Markers */}
           <Markers
+            title="markerList"
             locations={displayMarkers}
             setSelectedLocation={this.setSelectedLocation}
             userTime={userTime}
