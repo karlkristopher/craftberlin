@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import Dropdown from "react-bootstrap/Dropdown";
 
 import Map from "./Map/Map";
+import CheckBox from "./Checkbox";
 
 const MapDiv = styled.div`
   width: 100vw;
@@ -39,15 +42,15 @@ const Filters = styled.div`
   align-items: flex-start;
 `;
 
-const FiltersButton = styled.button`
-  font-size: 1.5em;
-  text-decoration: underline;
-  text-transform: lowercase;
-  border: none;
-  outline: none;
-  background: transparent;
-  font-weight: 500;
-`;
+// const FiltersButton = styled.button`
+//   font-size: 1.5em;
+//   text-decoration: underline;
+//   text-transform: lowercase;
+//   border: none;
+//   outline: none;
+//   background: transparent;
+//   font-weight: 500;
+// `;
 
 class Home extends Component {
   state = {
@@ -72,37 +75,32 @@ class Home extends Component {
           <Logo>
             <img src={"./logo.svg"} alt="berlin-craft logo" />
           </Logo>
-          <Title>
-            Berlin Craft Beer
-          </Title>
+          <Title>Berlin Craft Beer</Title>
           <Filters>
-            <FiltersButton>
-              Filter
-            </FiltersButton>
-            {/*<DropdownButton*/}
-            {/*  id="dropdown-item-button"*/}
-            {/*  variant="secondary"*/}
-            {/*  title="filter"*/}
-            {/*>*/}
-            {/*  <Dropdown.Item as="button">*/}
-            {/*    {" "}*/}
-            {/*    <CheckBox*/}
-            {/*      name="barCheck"*/}
-            {/*      value="Bars"*/}
-            {/*      checked={barCheck}*/}
-            {/*      onChange={this.handleCheck}*/}
-            {/*    />*/}
-            {/*  </Dropdown.Item>*/}
-            {/*  <Dropdown.Item as="button">*/}
-            {/*    {" "}*/}
-            {/*    <CheckBox*/}
-            {/*      name="bottleShopCheck"*/}
-            {/*      value="Bottle Shops"*/}
-            {/*      checked={bottleShopCheck}*/}
-            {/*      onChange={this.handleCheck}*/}
-            {/*    />*/}
-            {/*  </Dropdown.Item>*/}
-            {/*</DropdownButton>*/}
+            {/* <FiltersButton>Filter</FiltersButton> */}
+            <DropdownButton
+              id="dropdown-item-button"
+              variant="secondary"
+              title="filter"
+            >
+              <Dropdown.Item as="button">
+                <CheckBox
+                  name="barCheck"
+                  value="Bars"
+                  checked={barCheck}
+                  onChange={this.handleCheck}
+                />
+              </Dropdown.Item>
+              <Dropdown.Item as="button">
+                {" "}
+                <CheckBox
+                  name="bottleShopCheck"
+                  value="Bottle Shops"
+                  checked={bottleShopCheck}
+                  onChange={this.handleCheck}
+                />
+              </Dropdown.Item>
+            </DropdownButton>
           </Filters>
         </Head>
 
