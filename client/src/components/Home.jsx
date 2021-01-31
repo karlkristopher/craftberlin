@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import Dropdown from "react-bootstrap/Dropdown";
 
 import Map from "./Map/Map";
+import CheckBox from "./Checkbox";
 
 const MapDiv = styled.div`
   width: 100vw;
