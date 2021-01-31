@@ -53,7 +53,7 @@ First, create the required environment files.
 ```console
 cp .env.template .env
 cd client
-cp .env.template .env.local
+cp .env.local.template .env.local
 ```
 
 Second, install the dependencies.
