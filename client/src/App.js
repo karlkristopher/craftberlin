@@ -14,16 +14,7 @@ import SignUp from "./components/Admin/SignUp";
 import AddLocations from "./components/Admin/AddLocation";
 import EditLocations from "./components/Admin/EditLocation";
 
-const GlobalStyle = createGlobalStyle`
-html {
-  color: '#393939';
-}
-
-body {
-  padding: 0;
-  margin: 1rem 0 0 0;
-}
-`;
+const GlobalStyle = createGlobalStyle``;
 
 ReactGA.initialize("UA-172357978-1");
 ReactGA.pageview(window.location.pathname + window.location.search);

@@ -1,9 +1,14 @@
 body {
-  margin: 0 !important;
+  margin: 0;
+  padding: 0;
+  color: #111;
+  font-size: 14px;
+}
+
+html, body, h1, h2, h3, p, button, a, span {
   font-family: 'Poppins', 'Helvetica Neue', sans-serif, -apple-system;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1 {
+  font-size: 1.5em !important;
 }
