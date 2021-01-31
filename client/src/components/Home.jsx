@@ -10,32 +10,26 @@ const MapDiv = styled.div`
   width: 100vw;
 `;
 
-const Head = styled.header`
+const Head = styled.nav`
   display: flex;
-  justify-content: space-between;
   position: fixed;
-  width: 100%;
   z-index: 1;
-  padding: 0.5rem;
+  padding: 2em;
+  align-items: center;
+  width: 100%;
 `;
 
 const Logo = styled.div`
-  display: flex;
-  align-items: center;
-  flex-grow: 3;
-  h1 {
-    margin-left: 1rem;
-    font-size: 1.5rem;
-    user-select: none;
-    visibility: hidden;
-    @media (min-width: 576px) {
-      visibility: visible;
-    }
-  }
-
+  width: 3em;
   img {
-    width: 4rem;
+    max-width: 100%;
   }
+`;
+
+const Title = styled.h1`
+  user-select: none;
+  margin-bottom: 0;
+  margin-left: 0.5em;
 `;
 
 const Filters = styled.div`
@@ -46,6 +40,16 @@ const Filters = styled.div`
   justify-content: center;
   align-content: flex-end;
   align-items: flex-start;
+`;
+
+const FiltersButton = styled.button`
+  font-size: 1.5em;
+  text-decoration: underline;
+  text-transform: lowercase;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-weight: 500;
 `;
 
 class Home extends Component {
@@ -70,46 +74,39 @@ class Home extends Component {
         <Head>
           <Logo>
             <img src={"./logo.svg"} alt="berlin-craft logo" />
-            <h1>
-              <b>Berlin Craft Beer</b>
-            </h1>
           </Logo>
+          <Title>
+            Berlin Craft Beer
+          </Title>
           <Filters>
-            <DropdownButton
-              id="dropdown-item-button"
-              variant="secondary"
-              title="filter"
-            >
-              <Dropdown.Item as="button">
-                {" "}
-                <CheckBox
-                  name="barCheck"
-                  value="Bars"
-                  checked={barCheck}
-                  onChange={this.handleCheck}
-                />
-              </Dropdown.Item>
-              <Dropdown.Item as="button">
-                {" "}
-                <CheckBox
-                  name="bottleShopCheck"
-                  value="Bottle Shops"
-                  checked={bottleShopCheck}
-                  onChange={this.handleCheck}
-                />
-              </Dropdown.Item>
-            </DropdownButton>
+            <FiltersButton>
+              Filter
+            </FiltersButton>
+            {/*<DropdownButton*/}
+            {/*  id="dropdown-item-button"*/}
+            {/*  variant="secondary"*/}
+            {/*  title="filter"*/}
+            {/*>*/}
+            {/*  <Dropdown.Item as="button">*/}
+            {/*    {" "}*/}
+            {/*    <CheckBox*/}
+            {/*      name="barCheck"*/}
+            {/*      value="Bars"*/}
+            {/*      checked={barCheck}*/}
+            {/*      onChange={this.handleCheck}*/}
+            {/*    />*/}
+            {/*  </Dropdown.Item>*/}
+            {/*  <Dropdown.Item as="button">*/}
+            {/*    {" "}*/}
+            {/*    <CheckBox*/}
+            {/*      name="bottleShopCheck"*/}
+            {/*      value="Bottle Shops"*/}
+            {/*      checked={bottleShopCheck}*/}
+            {/*      onChange={this.handleCheck}*/}
+            {/*    />*/}
+            {/*  </Dropdown.Item>*/}
+            {/*</DropdownButton>*/}
           </Filters>
-          {/* <label>
-            <input
-              type="checkbox"
-              name="showOpen"
-              value="Show Open"
-              checked={showOpen}
-              onChange={this.handleCheck}
-            />
-            Show Open Only
-          </label> */}
         </Head>
 
         <MapDiv>

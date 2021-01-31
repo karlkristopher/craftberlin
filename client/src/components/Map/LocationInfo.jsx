@@ -4,7 +4,13 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const PopupBox = styled.div`
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  z-index: 4;
   padding-top: 0.8rem;
+  width: 100%;
 
   h2 {
     font-size: 0.9rem;
