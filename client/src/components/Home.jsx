@@ -1,4 +1,6 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
 import styled from "styled-components";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -52,68 +54,108 @@ const Filters = styled.div`
 //   font-weight: 500;
 // `;
 
-class Home extends Component {
-  state = {
-    barCheck: false,
-    bottleShopCheck: false,
-    showOpen: false,
+const Home = () => {
+  const [showOpen] = useState(false);
+  const [barCheck, setBarCheck] = useState(false);
+  const [bottleShopCheck, setBottleShopCheck] = useState(false);
+  const [locations, setLocations] = useState([]);
+  const [locateUser, setLocateUser] = useState({});
+  const [selectedLocation, setSelectedLocation] = useState();
+
+  const [viewport, setViewport] = useState({
+    width: "100vw",
+    height: "100vh",
+    latitude: 52.52,
+    longitude: 13.405,
+    zoom: 11,
+  });
+
+  useEffect(() => {
+    axios
+      .get(`https://berlin-craft.herokuapp.com/api/locations`)
+      .then((response) => {
+        setLocations(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const handleChange = (event) => {
+    if (event.target.name === "barCheck") setBarCheck((props) => !props);
+    if (event.target.name === "bottleShopCheck")
+      setBottleShopCheck((props) => !props);
   };
 
-  handleCheck = (event) => {
-    const { name, checked } = event.target;
-    this.setState({
-      [name]: checked,
-    });
-  };
+  //Filter Locations
+  const showLocations = locations.filter((location) => {
+    // **RERENDERING
+    if (!barCheck && !bottleShopCheck) return true;
+    if (!location.bar && barCheck && bottleShopCheck) return false;
+    if (!location.bottleShop && barCheck && bottleShopCheck) return false;
+    if (location.bar && barCheck) return true;
+    if (location.bottleShop && bottleShopCheck) return true;
+    return false;
 
-  render() {
-    const { barCheck, bottleShopCheck, showOpen } = this.state;
+    // const filteredLocations = locations.filter((location) => {
+    //   return (
+    //     location.status === "OPERATIONAL" ||
+    //     location.status === "CLOSED_TEMPORARILY"
+    //   );
+    // });
+  });
 
-    return (
-      <>
-        <Head>
-          <Logo>
-            <img src={"./logo.svg"} alt="berlin-craft logo" />
-          </Logo>
-          <Title>Berlin Craft Beer</Title>
-          <Filters>
-            {/* <FiltersButton>Filter</FiltersButton> */}
-            <DropdownButton
-              id="dropdown-item-button"
-              variant="secondary"
-              title="filter"
-            >
-              <Dropdown.Item as="button">
-                <CheckBox
-                  name="barCheck"
-                  value="Bars"
-                  checked={barCheck}
-                  onChange={this.handleCheck}
-                />
-              </Dropdown.Item>
-              <Dropdown.Item as="button">
-                {" "}
-                <CheckBox
-                  name="bottleShopCheck"
-                  value="Bottle Shops"
-                  checked={bottleShopCheck}
-                  onChange={this.handleCheck}
-                />
-              </Dropdown.Item>
-            </DropdownButton>
-          </Filters>
-        </Head>
+  return (
+    <>
+      <Head>
+        <Logo>
+          <img src={"./logo.svg"} alt="berlin-craft logo" />
+        </Logo>
+        <Title>Berlin Craft Beer</Title>
+        <Filters>
+          {/* <FiltersButton>Filter</FiltersButton> */}
+          <DropdownButton
+            id="dropdown-item-button"
+            variant="secondary"
+            title="filter"
+          >
+            <Dropdown.Item as="button">
+              <CheckBox
+                name="barCheck"
+                value="Bars"
+                checked={barCheck}
+                onChange={handleChange}
+              />
+            </Dropdown.Item>
+            <Dropdown.Item as="button">
+              {" "}
+              <CheckBox
+                name="bottleShopCheck"
+                value="Bottle Shops"
+                checked={bottleShopCheck}
+                onChange={handleChange}
+              />
+            </Dropdown.Item>
+          </DropdownButton>
+        </Filters>
+      </Head>
 
-        <MapDiv>
-          <Map
-            barCheck={barCheck}
-            bottleShopCheck={bottleShopCheck}
-            showOpen={showOpen}
-          />
-        </MapDiv>
-      </>
-    );
-  }
-}
+      <MapDiv>
+        <Map
+          barCheck={barCheck}
+          bottleShopCheck={bottleShopCheck}
+          showOpen={showOpen}
+          showLocations={showLocations}
+          viewport={viewport}
+          setViewport={setViewport}
+          locateUser={locateUser}
+          setLocateUser={setLocateUser}
+          selectedLocation={selectedLocation}
+          setSelectedLocation={setSelectedLocation}
+        />
+      </MapDiv>
+    </>
+  );
+};
 
 export default Home;
