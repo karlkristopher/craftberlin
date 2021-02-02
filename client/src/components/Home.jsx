@@ -70,9 +70,11 @@ const Home = () => {
     zoom: 11,
   });
 
+  console.log("object", process.env.REACT_APP_GET_LOCATIONS);
+
   useEffect(() => {
     axios
-      .get(`https://berlin-craft.herokuapp.com/api/locations`)
+      .get(process.env.REACT_APP_GET_LOCATIONS)
       .then((response) => {
         setLocations(response.data);
       })
