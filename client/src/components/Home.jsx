@@ -70,8 +70,6 @@ const Home = () => {
     zoom: 11,
   });
 
-  console.log("object", process.env.REACT_APP_GET_LOCATIONS);
-
   useEffect(() => {
     axios
       .get(process.env.REACT_APP_GET_LOCATIONS)
