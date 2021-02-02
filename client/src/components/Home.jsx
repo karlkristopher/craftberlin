@@ -8,6 +8,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Map from "./Map/Map";
 import LocationInfo from "./Map/LocationInfo";
 import CheckBox from "./Checkbox";
+import Loading from "./Loading";
 
 const MapDiv = styled.div`
   width: 100vw;
@@ -69,6 +70,7 @@ const Home = () => {
   const [locations, setLocations] = useState([]);
   const [locateUser, setLocateUser] = useState({});
   const [selectedLocation, setSelectedLocation] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const [viewport, setViewport] = useState(defaultViewport);
 
@@ -102,6 +104,12 @@ const Home = () => {
       });
   }, []);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
+  }, []);
+
   const handleChange = (event) => {
     if (event.target.name === "barCheck") setBarCheck((props) => !props);
     if (event.target.name === "bottleShopCheck")
@@ -126,6 +134,7 @@ const Home = () => {
     // });
   });
 
+<<<<<<< HEAD
   const renderPopup = () =>
     selectedLocation ? (
       <LocationInfo
@@ -135,9 +144,13 @@ const Home = () => {
     ) : (
       <></>
     );
+=======
+  console.log("selectedLocation", selectedLocation);
+>>>>>>> loading spinner on start
 
   return (
     <>
+      {isLoading && <Loading />}
       <Head>
         <Logo>
           <img src={"./logo.svg"} alt="berlin-craft logo" />
