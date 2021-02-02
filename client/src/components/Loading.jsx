@@ -14,12 +14,19 @@ const LoadingPage = styled.div`
   flex-direction: column;
 `;
 
+const LoadingSpinnerWrapper = styled.div`
+  width: 100px;
+`;
+
 const LoadingText = styled.h2``;
 
 const Loading = () => {
   return (
     <LoadingPage>
-      <LoadingSpinner />
+      <LoadingSpinnerWrapper>
+        {" "}
+        <LoadingSpinner />
+      </LoadingSpinnerWrapper>
       <LoadingText>Getting Locations</LoadingText>
     </LoadingPage>
   );

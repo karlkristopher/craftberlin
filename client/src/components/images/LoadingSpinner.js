@@ -5,8 +5,8 @@ export const LoadingSpinner = () => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsxlink="http://www.w3.org/1999/xlink"
-      width="200px"
-      height="200px"
+      width="100%"
+      height="100%"
       viewBox="0 0 100 100"
       preserveAspectRatio="xMidYMid"
     >
