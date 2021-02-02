@@ -7,6 +7,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 
 import Map from "./Map/Map";
 import CheckBox from "./Checkbox";
+import Loading from "./Loading";
 
 const MapDiv = styled.div`
   width: 100vw;
@@ -61,6 +62,7 @@ const Home = () => {
   const [locations, setLocations] = useState([]);
   const [locateUser, setLocateUser] = useState({});
   const [selectedLocation, setSelectedLocation] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   const [viewport, setViewport] = useState({
     width: "100vw",
@@ -79,6 +81,12 @@ const Home = () => {
       .catch((err) => {
         console.log(err);
       });
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
   }, []);
 
   const handleChange = (event) => {
@@ -105,8 +113,11 @@ const Home = () => {
     // });
   });
 
+  console.log("selectedLocation", selectedLocation);
+
   return (
     <>
+      {isLoading && <Loading />}
       <Head>
         <Logo>
           <img src={"./logo.svg"} alt="berlin-craft logo" />
