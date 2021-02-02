@@ -12,3 +12,33 @@ html, body, h1, h2, h3, p, button, a, span {
 h1 {
   font-size: 1.5em !important;
 }
+
+.box {
+  background: #111;
+  color: #fff;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 8;
+  padding: 2rem;
+  max-height: 50vh;
+  overflow-y: scroll;
+}
+
+.marker {
+  display: block;
+  background: transparent;
+  border: 5px solid;
+  border-radius: 4em;
+  border-color: #111;
+  cursor: pointer;
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.marker:active, .marker:focus {
+  background: #111;
+  outline: none;
+}

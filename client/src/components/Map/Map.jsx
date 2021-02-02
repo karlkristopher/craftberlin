@@ -1,12 +1,9 @@
-import React, { Component } from "react";
-import ReactMapGL, { Popup, Marker } from "react-map-gl";
-/* import moment from 'moment'; */
-import moment from "moment-timezone";
+import React from "react";
+import ReactMapGL, { Marker } from "react-map-gl";
+
 import styled from "styled-components";
-import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LocationInfo from "./LocationInfo";
-import Markers from "./Markers";
 
 const MapControls = styled.div`
   display: flex;
@@ -27,61 +24,10 @@ const UserButton = styled.button`
   }
 `;
 
-class Map extends Component {
-  state = {
-    allLocations: [],
-
-    viewport: {
-      width: "100vw",
-      height: "100vh",
-      latitude: 52.52,
-      longitude: 13.405,
-      zoom: 11,
-    },
-    selectedLocation: null,
-    userLocation: {},
-
-    //Time of User will be set to Berlin Time
-    userTime: {
-      moment: undefined,
-      year: null,
-      month: null,
-      day: null,
-      hours: null,
-      minutes: null,
-    },
-  };
-
-  componentDidMount() {
-    axios
-      .get(`https://berlin-craft.herokuapp.com/api/locations`)
-      .then((response) => {
-        this.setState({ allLocations: response.data });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    // Below is under construction for an "Open Now" button.
-    this.setState({
-      userTime: {
-        moment: moment.tz("Europe/Berlin"),
-        year: moment.tz("Europe/Berlin").year(),
-        month: moment.tz("Europe/Berlin").month(),
-        day: moment.tz("Europe/Berlin").day(),
-        /*         hours: moment.tz("Europe/Berlin").hour(),
-        minutes: moment.tz("Europe/Berlin").minute(), */
-      },
-    });
-  }
-
-  setSelectedLocation = (location) => {
-    this.setState({ selectedLocation: location });
-  };
-
-  setUserLocation = () => {
+const Map = (props) => {
+  const setUserLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
-      let setUserLocation = {
+      let setNewUserLocation = {
         lat: position.coords.latitude,
         long: position.coords.longitude,
       };
@@ -92,147 +38,71 @@ class Map extends Component {
         longitude: position.coords.longitude,
         zoom: 13,
       };
-      this.setState({
-        viewport: newViewport,
-        userLocation: setUserLocation,
-      });
+      props.setViewport(newViewport);
+      props.setLocateUser(setNewUserLocation);
     });
   };
 
-  renderPopup() {
-    const { selectedLocation } = this.state;
-    return (
-      selectedLocation && (
-        <Popup
-          closeOnClick={false}
-          tipSize={5}
-          latitude={selectedLocation.coordinates[0]}
-          longitude={selectedLocation.coordinates[1]}
-          onClose={() => this.setState({ selectedLocation: null })}
-        >
-          <LocationInfo info={selectedLocation} />
-        </Popup>
-      )
+  const displayLocations = props.showLocations.map((location) => (
+    <Marker
+      latitude={location.coordinates[0]}
+      longitude={location.coordinates[1]}
+      key={location._id}
+      offsetLeft={-15}
+      offsetTop={-15}
+    >
+      <button
+        className="marker"
+        name="marker"
+        onClick={() => props.setSelectedLocation(location)}
+      ></button>
+    </Marker>
+  ));
+
+  const renderPopup = () =>
+    props.selectedLocation ? (
+      <LocationInfo
+        info={props.selectedLocation}
+        setSelectedLocation={props.setSelectedLocation}
+      />
+    ) : (
+      <></>
     );
-  }
+  return (
+    <>
+      <ReactMapGL
+        {...props.viewport}
+        onViewportChange={(viewport) => {
+          props.setViewport(viewport);
+        }}
+        mapStyle="mapbox://styles/karlsec/ckcg9woc70wy51io0a8kv9fm0"
+        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX}
+      >
+        <MapControls>
+          <UserButton onClick={setUserLocation}>
+            <FontAwesomeIcon icon="map-marked-alt" size="lg" />
+          </UserButton>
+        </MapControls>
 
-  render() {
-    const { allLocations, viewport, userLocation, userTime } = this.state;
-    const { barCheck, bottleShopCheck, tapRoomCheck } = this.props;
+        {/* Displays all Markers */}
+        {displayLocations}
 
-    // Below is under construction for an "Open Now" button.
-    // const openCheck = (location) => {
-    //   let isOpen = false;
-    //   let dayPassed = false;
-
-    //   let hours = location.openHoursDetail;
-
-    //   for (
-    //     let i = 0;
-    //     i < hours.length && dayPassed === false && isOpen === false;
-    //     i++
-    //   ) {
-    //     /*    console.log(  userTime.year,
-    //       userTime.month,
-    //       hours[i].open.day,
-    //       hours[i].open.hours,
-    //       hours[i].open.minutes); */
-    //     console.log(
-    //       userTime.year,
-    //       userTime.month,
-    //       hours[i].close.day,
-    //       hours[i].close.hours,
-    //       hours[i].close.minutes
-    //     );
-
-    //     if (userTime.day < hours[i].open.day) {
-    //       dayPassed = true;
-    //     }
-
-    //     console.log(
-    //       moment([
-    //         userTime.year,
-    //         userTime.month,
-    //         hours[i].close.day,
-    //         hours[i].close.hours,
-    //         hours[i].close.minutes,
-    //       ])
-    //     );
-
-    //     if (
-    //       moment.tz("Europe/Berlin").isBetween(
-    //         moment([
-    //           userTime.year,
-    //           userTime.month,
-    //           hours[i].open.day,
-    //           hours[i].open.hours,
-    //           hours[i].open.minutes,
-    //         ]),
-
-    //         moment([
-    //           userTime.year,
-    //           userTime.month,
-    //           hours[i].close.day,
-    //           hours[i].close.hours,
-    //           hours[i].close.minutes,
-    //         ])
-    //       )
-    //     ) {
-    //       isOpen = true;
-    //     }
-    //   }
-
-    //   return isOpen;
-    // };
-
-    const displayMarkers = allLocations.filter((location) => {
-      /*       if (!openCheck(location) && showOpen) return false;
-       */ if (!barCheck && !bottleShopCheck && !tapRoomCheck) return true;
-      if (!location.bar && barCheck && bottleShopCheck) return false;
-      if (!location.bottleShop && barCheck && bottleShopCheck) return false;
-      if (location.bar && barCheck) return true;
-      if (location.bottleShop && bottleShopCheck) return true;
-      return false;
-    });
-
-    return (
-      <>
-        <ReactMapGL
-          {...viewport}
-          onViewportChange={(viewport) => this.setState({ viewport })}
-          mapStyle="mapbox://styles/karlsec/ckcg9woc70wy51io0a8kv9fm0"
-          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX}
-        >
-          <MapControls>
-            <UserButton onClick={this.setUserLocation}>
-              <FontAwesomeIcon icon="map-marked-alt" size="lg" />
-            </UserButton>
-          </MapControls>
-
-          {/* Displays all Markers */}
-          <Markers
-            locations={displayMarkers}
-            setSelectedLocation={this.setSelectedLocation}
-            userTime={userTime}
-          />
-
-          {/* Shows User Pin on Map */}
-          {Object.keys(userLocation).length !== 0 && (
-            <Marker
-              latitude={userLocation.lat}
-              longitude={userLocation.long}
-              offsetLeft={-20}
-              offsetTop={-40}
-            >
-              <FontAwesomeIcon icon="map-marker" size="2x" />
-            </Marker>
-          )}
-          {/* Shows Location Data on Click */}
-          {this.renderPopup()}
-        </ReactMapGL>
-      </>
-    );
-  }
-}
+        {/* Shows User Pin on Map */}
+        {Object.keys(props.locateUser).length !== 0 && (
+          <Marker
+            latitude={props.locateUser.lat}
+            longitude={props.locateUser.long}
+            offsetLeft={-20}
+            offsetTop={-40}
+          >
+            <FontAwesomeIcon icon="map-marker" size="2x" />
+          </Marker>
+        )}
+        {/* Shows Location Data on Click */}
+        {renderPopup()}
+      </ReactMapGL>
+    </>
+  );
+};
 
 export default Map;
