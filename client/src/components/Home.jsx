@@ -134,7 +134,6 @@ const Home = () => {
     // });
   });
 
-<<<<<<< HEAD
   const renderPopup = () =>
     selectedLocation ? (
       <LocationInfo
@@ -144,9 +143,6 @@ const Home = () => {
     ) : (
       <></>
     );
-=======
-  console.log("selectedLocation", selectedLocation);
->>>>>>> loading spinner on start
 
   return (
     <>
