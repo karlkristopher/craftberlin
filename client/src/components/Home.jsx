@@ -8,6 +8,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Map from "./Map/Map";
 import LocationInfo from "./Map/LocationInfo";
 import CheckBox from "./Checkbox";
+import Loading from "./Loading";
 
 const MapDiv = styled.div`
   width: 100vw;
@@ -56,21 +57,28 @@ const Filters = styled.div`
 // `;
 
 const Home = () => {
-  const defaultViewport = {
-    width: "100vw",
-    height: "100vh",
-    latitude: 52.52,
-    longitude: 13.405,
-    zoom: 11,
-  };
+  // const defaultViewport = {
+  //   width: "100vw",
+  //   height: "100vh",
+  //   latitude: 52.52,
+  //   longitude: 13.405,
+  //   zoom: 11,
+  // };
   const [showOpen] = useState(false);
   const [barCheck, setBarCheck] = useState(false);
   const [bottleShopCheck, setBottleShopCheck] = useState(false);
   const [locations, setLocations] = useState([]);
   const [locateUser, setLocateUser] = useState({});
   const [selectedLocation, setSelectedLocation] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
-  const [viewport, setViewport] = useState(defaultViewport);
+  const [viewport, setViewport] = useState({
+    width: "100vw",
+    height: "100vh",
+    latitude: 52.52,
+    longitude: 13.405,
+    zoom: 11,
+  });
 
   //Handle Viewport Changes
   useEffect(() => {
@@ -87,7 +95,13 @@ const Home = () => {
       }));
     } else {
       //If no location, set to default viewport
-      setViewport(defaultViewport);
+      setViewport((prevState) => ({
+        width: "100vw",
+        height: "100vh",
+        latitude: 52.52,
+        longitude: 13.405,
+        zoom: 11,
+      }));
     }
   }, [selectedLocation]);
 
@@ -100,6 +114,12 @@ const Home = () => {
       .catch((err) => {
         console.log(err);
       });
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
   }, []);
 
   const handleChange = (event) => {
@@ -138,6 +158,7 @@ const Home = () => {
 
   return (
     <>
+      {isLoading && <Loading />}
       <Head>
         <Logo>
           <img src={"./logo.svg"} alt="berlin-craft logo" />
