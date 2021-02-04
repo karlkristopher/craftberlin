@@ -46,24 +46,7 @@ const Filters = styled.div`
   align-items: flex-start;
 `;
 
-// const FiltersButton = styled.button`
-//   font-size: 1.5em;
-//   text-decoration: underline;
-//   text-transform: lowercase;
-//   border: none;
-//   outline: none;
-//   background: transparent;
-//   font-weight:  500;
-// `;
-
 const Home = () => {
-  // const defaultViewport = {
-  //   width: "100vw",
-  //   height: "100vh",
-  //   latitude: 52.52,
-  //   longitude: 13.405,
-  //   zoom: 11,
-  // };
   const [showOpen] = useState(false);
   const [barCheck, setBarCheck] = useState(false);
   const [bottleShopCheck, setBottleShopCheck] = useState(false);
@@ -83,17 +66,7 @@ const Home = () => {
   //Handle Viewport Changes
   useEffect(() => {
     // If location is selected, change viewport based on location
-    if (selectedLocation !== "") {
-      const locationLat = selectedLocation.coordinates[0];
-      const locationLong = selectedLocation.coordinates[1];
-
-      setViewport((prevState) => ({
-        ...prevState,
-        latitude: locationLat,
-        longitude: locationLong,
-        height: "50vh",
-      }));
-    } else {
+    if (selectedLocation === "") {
       //If no location, set to default viewport
       setViewport((prevState) => ({
         width: "100vw",
@@ -128,22 +101,13 @@ const Home = () => {
       setBottleShopCheck((props) => !props);
   };
 
-  //Filter Locations
+  // Filter Locations
   const showLocations = locations.filter((location) => {
-    // **RERENDERING
     if (!barCheck && !bottleShopCheck) return true;
     if (!location.bar && barCheck && bottleShopCheck) return false;
     if (!location.bottleShop && barCheck && bottleShopCheck) return false;
     if (location.bar && barCheck) return true;
-    if (location.bottleShop && bottleShopCheck) return true;
-    return false;
-
-    // const filteredLocations = locations.filter((location) => {
-    //   return (
-    //     location.status === "OPERATIONAL" ||
-    //     location.status === "CLOSED_TEMPORARILY"
-    //   );
-    // });
+    return (location.bottleShop && bottleShopCheck);
   });
 
   const renderPopup = () =>
@@ -165,7 +129,6 @@ const Home = () => {
         </Logo>
         <Title>Berlin Craft Beer</Title>
         <Filters>
-          {/* <FiltersButton>Filter</FiltersButton> */}
           <DropdownButton
             id="dropdown-item-button"
             variant="secondary"
