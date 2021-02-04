@@ -6,6 +6,7 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 
 import Map from "./Map/Map";
+import LocationInfo from "./Map/LocationInfo";
 import CheckBox from "./Checkbox";
 
 const MapDiv = styled.div`
@@ -51,24 +52,44 @@ const Filters = styled.div`
 //   border: none;
 //   outline: none;
 //   background: transparent;
-//   font-weight: 500;
+//   font-weight:  500;
 // `;
 
 const Home = () => {
-  const [showOpen] = useState(false);
-  const [barCheck, setBarCheck] = useState(false);
-  const [bottleShopCheck, setBottleShopCheck] = useState(false);
-  const [locations, setLocations] = useState([]);
-  const [locateUser, setLocateUser] = useState({});
-  const [selectedLocation, setSelectedLocation] = useState();
-
-  const [viewport, setViewport] = useState({
+  const defaultViewport = {
     width: "100vw",
     height: "100vh",
     latitude: 52.52,
     longitude: 13.405,
     zoom: 11,
-  });
+  };
+  const [showOpen] = useState(false);
+  const [barCheck, setBarCheck] = useState(false);
+  const [bottleShopCheck, setBottleShopCheck] = useState(false);
+  const [locations, setLocations] = useState([]);
+  const [locateUser, setLocateUser] = useState({});
+  const [selectedLocation, setSelectedLocation] = useState("");
+
+  const [viewport, setViewport] = useState(defaultViewport);
+
+  //Handle Viewport Changes
+  useEffect(() => {
+    // If location is selected, change viewport based on location
+    if (selectedLocation !== "") {
+      const locationLat = selectedLocation.coordinates[0];
+      const locationLong = selectedLocation.coordinates[1];
+
+      setViewport((prevState) => ({
+        ...prevState,
+        latitude: locationLat,
+        longitude: locationLong,
+        height: "50vh",
+      }));
+    } else {
+      //If no location, set to default viewport
+      setViewport(defaultViewport);
+    }
+  }, [selectedLocation]);
 
   useEffect(() => {
     axios
@@ -104,6 +125,16 @@ const Home = () => {
     //   );
     // });
   });
+
+  const renderPopup = () =>
+    selectedLocation ? (
+      <LocationInfo
+        info={selectedLocation}
+        setSelectedLocation={setSelectedLocation}
+      />
+    ) : (
+      <></>
+    );
 
   return (
     <>
@@ -153,6 +184,8 @@ const Home = () => {
           selectedLocation={selectedLocation}
           setSelectedLocation={setSelectedLocation}
         />
+        {/* Shows Location Data on Click */}
+        {renderPopup()}
       </MapDiv>
     </>
   );

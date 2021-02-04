@@ -3,11 +3,10 @@ import ReactMapGL, { Marker } from "react-map-gl";
 
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import LocationInfo from "./LocationInfo";
 
 const MapControls = styled.div`
   display: flex;
-  position: fixed;
+  position: absolute;
   z-index: 1;
   padding: 1.5rem 0.5rem;
   bottom: 0.7rem;
@@ -59,15 +58,6 @@ const Map = (props) => {
     </Marker>
   ));
 
-  const renderPopup = () =>
-    props.selectedLocation ? (
-      <LocationInfo
-        info={props.selectedLocation}
-        setSelectedLocation={props.setSelectedLocation}
-      />
-    ) : (
-      <></>
-    );
   return (
     <>
       <ReactMapGL
@@ -98,8 +88,6 @@ const Map = (props) => {
             <FontAwesomeIcon icon="map-marker" size="2x" />
           </Marker>
         )}
-        {/* Shows Location Data on Click */}
-        {renderPopup()}
       </ReactMapGL>
     </>
   );
