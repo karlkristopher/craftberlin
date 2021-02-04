@@ -56,20 +56,40 @@ const Filters = styled.div`
 // `;
 
 const Home = () => {
-  const [showOpen] = useState(false);
-  const [barCheck, setBarCheck] = useState(false);
-  const [bottleShopCheck, setBottleShopCheck] = useState(false);
-  const [locations, setLocations] = useState([]);
-  const [locateUser, setLocateUser] = useState({});
-  const [selectedLocation, setSelectedLocation] = useState();
-
-  const [viewport, setViewport] = useState({
+  const defaultViewport = {
     width: "100vw",
     height: "100vh",
     latitude: 52.52,
     longitude: 13.405,
     zoom: 11,
-  });
+  };
+  const [showOpen] = useState(false);
+  const [barCheck, setBarCheck] = useState(false);
+  const [bottleShopCheck, setBottleShopCheck] = useState(false);
+  const [locations, setLocations] = useState([]);
+  const [locateUser, setLocateUser] = useState({});
+  const [selectedLocation, setSelectedLocation] = useState("");
+
+  const [viewport, setViewport] = useState(defaultViewport);
+
+  //Handle Viewport Changes
+  useEffect(() => {
+    // If location is selected, change viewport based on location
+    if (selectedLocation !== "") {
+      const locationLat = selectedLocation.coordinates[0];
+      const locationLong = selectedLocation.coordinates[1];
+
+      setViewport((prevState) => ({
+        ...prevState,
+        latitude: locationLat,
+        longitude: locationLong,
+        height: "50vh",
+      }));
+    } else {
+      //If no location, set to default viewport
+      setViewport(defaultViewport);
+    }
+  }, [selectedLocation]);
 
   useEffect(() => {
     axios

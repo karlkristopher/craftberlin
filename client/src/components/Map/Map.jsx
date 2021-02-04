@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const MapControls = styled.div`
   display: flex;
-  position: fixed;
+  position: absolute;
   z-index: 1;
   padding: 1.5rem 0.5rem;
   bottom: 0.7rem;
