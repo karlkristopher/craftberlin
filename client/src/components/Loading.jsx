@@ -27,7 +27,7 @@ const Loading = () => {
         {" "}
         <LoadingSpinner />
       </LoadingSpinnerWrapper>
-      <LoadingText>Getting Locations</LoadingText>
+      <LoadingText>Pouring...</LoadingText>
     </LoadingPage>
   );
 };
