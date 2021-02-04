@@ -57,13 +57,13 @@ const Filters = styled.div`
 // `;
 
 const Home = () => {
-  const defaultViewport = {
-    width: "100vw",
-    height: "100vh",
-    latitude: 52.52,
-    longitude: 13.405,
-    zoom: 11,
-  };
+  // const defaultViewport = {
+  //   width: "100vw",
+  //   height: "100vh",
+  //   latitude: 52.52,
+  //   longitude: 13.405,
+  //   zoom: 11,
+  // };
   const [showOpen] = useState(false);
   const [barCheck, setBarCheck] = useState(false);
   const [bottleShopCheck, setBottleShopCheck] = useState(false);
@@ -72,7 +72,13 @@ const Home = () => {
   const [selectedLocation, setSelectedLocation] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
-  const [viewport, setViewport] = useState(defaultViewport);
+  const [viewport, setViewport] = useState({
+    width: "100vw",
+    height: "100vh",
+    latitude: 52.52,
+    longitude: 13.405,
+    zoom: 11,
+  });
 
   //Handle Viewport Changes
   useEffect(() => {
@@ -89,7 +95,13 @@ const Home = () => {
       }));
     } else {
       //If no location, set to default viewport
-      setViewport(defaultViewport);
+      setViewport((prevState) => ({
+        width: "100vw",
+        height: "100vh",
+        latitude: 52.52,
+        longitude: 13.405,
+        zoom: 11,
+      }));
     }
   }, [selectedLocation]);
 
