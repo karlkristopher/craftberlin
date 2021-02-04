@@ -1,7 +1,14 @@
+:root {
+  --bcb-primary: #111;
+  --bcb-secondary: #f9f9f9;
+  --bcb-white: #fff;
+  --bcb-green: #8bce48;
+}
+
 body {
   margin: 0;
   padding: 0;
-  color: #111;
+  color: var(--bcb-primary);
   font-size: 14px;
 }
 
@@ -14,17 +21,52 @@ h1 {
 }
 
 .box {
-  background: #111;
-  color: #fff;
+  background: var(--bcb-primary);
+  color: var(--bcb-white);
   position: fixed;
   width: 100%;
   bottom: 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
   z-index: 8;
   padding: 2rem;
   max-height: 50vh;
   overflow-y: scroll;
+}
+
+.box__content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.box__content p {
+  color: var(--bcb-secondary);
+}
+
+.box__content a {
+  color: var(--bcb-white);
+  text-decoration: underline;
+  border-bottom-color: var(--bcb-white);
+}
+
+.box__content a:hover {
+  color: var(--bcb-white);
+  border-color: var(--bcb-white);
+  text-decoration: wavy underline;
+}
+
+.box__controls {
+  flex-grow: 0;
+}
+
+.box-controls__close {
+  background: transparent;
+  color: var(--bcb-white);
+  display: block;
+  outline: none;
+  border: none;
+  font-size: 1.5em;
 }
 
 .marker {
@@ -32,13 +74,13 @@ h1 {
   background: transparent;
   border: 5px solid;
   border-radius: 4em;
-  border-color: #111;
+  border-color: var(--bcb-primary);
   cursor: pointer;
   width: 1.5em;
   height: 1.5em;
 }
 
 .marker:active, .marker:focus {
-  background: #111;
+  background: var(--bcb-primary);
   outline: none;
 }
