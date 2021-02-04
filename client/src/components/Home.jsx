@@ -49,7 +49,7 @@ const Filters = styled.div`
 //   text-decoration: underline;
 //   text-transform: lowercase;
 //   border: none;
-//   outline: none;
+//   outline: non e;
 //   background: transparent;
 //   font-weight: 500;
 // `;
