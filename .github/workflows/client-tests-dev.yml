@@ -21,6 +21,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
+       env:
+        REACT_APP_MAPBOX: ${{secrets.REACT_APP_MAPBOX}}
+        REACT_APP_GET_LOCATIONS: ${{secrets.REACT_APP_GET_LOCATIONS}}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
