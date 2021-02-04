@@ -6,6 +6,7 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 
 import Map from "./Map/Map";
+import LocationInfo from "./Map/LocationInfo";
 import CheckBox from "./Checkbox";
 
 const MapDiv = styled.div`
@@ -105,6 +106,16 @@ const Home = () => {
     // });
   });
 
+  const renderPopup = () =>
+    selectedLocation ? (
+      <LocationInfo
+        info={selectedLocation}
+        setSelectedLocation={setSelectedLocation}
+      />
+    ) : (
+      <></>
+    );
+
   return (
     <>
       <Head>
@@ -153,6 +164,8 @@ const Home = () => {
           selectedLocation={selectedLocation}
           setSelectedLocation={setSelectedLocation}
         />
+        {/* Shows Location Data on Click */}
+        {renderPopup()}
       </MapDiv>
     </>
   );
