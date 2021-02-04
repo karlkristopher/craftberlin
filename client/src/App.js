@@ -16,7 +16,8 @@ import EditLocations from "./components/Admin/EditLocation";
 
 const GlobalStyle = createGlobalStyle``;
 
-ReactGA.initialize("UA-172357978-1");
+ReactGA.initialize(process.env.REACT_APP_REACTGA);
+
 ReactGA.pageview(window.location.pathname + window.location.search);
 
 class App extends Component {

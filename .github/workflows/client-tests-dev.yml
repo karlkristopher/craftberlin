@@ -1,13 +1,13 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Client Tests - Deploy
+name: Client Tests - Dev
 
 on:
   push:
-    branches: [main]
+    branches: [dev]
   pull_request:
-    branches: [main]
+    branches: [dev]
 
 jobs:
   build:
@@ -21,6 +21,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
+       env:
+        REACT_APP_MAPBOX: ${{secrets.REACT_APP_MAPBOX}}
+        REACT_APP_GET_LOCATIONS: ${{secrets.REACT_APP_GET_LOCATIONS}}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}

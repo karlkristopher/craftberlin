@@ -1,4 +1,5 @@
 # Berlin Craft Beer
+[![Netlify Status](https://api.netlify.com/api/v1/badges/65007c7c-a224-4275-902d-2d1b3a6b9f97/deploy-status)](https://app.netlify.com/sites/berlincraft-beer/deploys) <br>
 ![Client Tests](https://github.com/karlkristopher/craftberlin/workflows/Client%20Tests/badge.svg)
 
 * Mobile-friendly directory of craft beer bars, brewhouses, and bottleshops around Berlin.
