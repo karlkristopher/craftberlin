@@ -93,7 +93,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get(`https://berlin-craft.herokuapp.com/api/locations`)
+      .get(process.env.REACT_APP_GET_LOCATIONS)
       .then((response) => {
         setLocations(response.data);
       })
