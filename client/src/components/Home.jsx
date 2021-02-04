@@ -52,7 +52,7 @@ const Filters = styled.div`
 //   border: none;
 //   outline: none;
 //   background: transparent;
-//   font-weight: 500;
+//   font-weight:  500;
 // `;
 
 const Home = () => {
