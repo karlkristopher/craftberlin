@@ -1,30 +1,83 @@
+:root {
+  --bcb-primary: #111;
+  --bcb-secondary: #f9f9f9;
+  --bcb-white: #fff;
+  --bcb-green: #8bce48;
+}
+
 body {
   margin: 0;
   padding: 0;
-  color: #111;
+  color: var(--bcb-primary);
   font-size: 14px;
 }
 
-html, body, h1, h2, h3, p, button, a, span {
-  font-family: 'Poppins', 'Helvetica Neue', sans-serif, -apple-system;
+html,
+body,
+h1,
+h2,
+h3,
+p,
+button,
+a,
+span {
+  font-family: "Poppins", "Helvetica Neue", sans-serif, -apple-system;
 }
 
-h1 {
-  font-size: 1.5em !important;
+.title {
+  font-size: 1.5em;
+  user-select: none;
+  margin-bottom: 0;
+  margin-left: 0.5em;
 }
 
 .box {
-  background: #111;
-  color: #fff;
+  background: var(--bcb-primary);
+  color: var(--bcb-white);
   position: fixed;
   width: 100%;
   bottom: 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
   z-index: 8;
   padding: 2rem;
   max-height: 50vh;
   overflow-y: scroll;
+}
+
+.box__content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.box__content p {
+  color: var(--bcb-secondary);
+}
+
+.box__content a {
+  color: var(--bcb-white);
+  text-decoration: underline;
+  border-bottom-color: var(--bcb-white);
+}
+
+.box__content a:hover {
+  color: var(--bcb-white);
+  border-color: var(--bcb-white);
+  text-decoration: wavy underline;
+}
+
+.box__controls {
+  flex-grow: 0;
+}
+
+.box-controls__close {
+  background: transparent;
+  color: var(--bcb-white);
+  display: block;
+  outline: none;
+  border: none;
+  font-size: 1.5em;
 }
 
 .marker {
@@ -32,13 +85,42 @@ h1 {
   background: transparent;
   border: 5px solid;
   border-radius: 4em;
-  border-color: #111;
+  border-color: var(--bcb-primary);
   cursor: pointer;
   width: 1.5em;
   height: 1.5em;
 }
 
-.marker:active, .marker:focus {
-  background: #111;
+.dropdown__wrapper {
+  position: fixed;
+  z-index: 7;
+  top: 2.35em;
+  right: 2em;
+}
+
+.mapboxgl-marker {
+  z-index: 6;
+}
+
+.marker:active,
+.marker:focus {
+  background: var(--bcb-primary);
   outline: none;
+}
+
+.nav-bar {
+  display: flex;
+  position: fixed;
+  top: 2em;
+  left: 2em;
+  z-index: 1;
+  align-items: center;
+}
+
+.nav-bar__logo {
+  width: 3em;
+}
+
+.nav-bar__logo img {
+  max-width: 100%;
 }

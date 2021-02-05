@@ -18,16 +18,13 @@ const LoadingSpinnerWrapper = styled.div`
   width: 100px;
 `;
 
-const LoadingText = styled.h2``;
-
 const Loading = () => {
   return (
     <LoadingPage>
       <LoadingSpinnerWrapper>
-        {" "}
         <LoadingSpinner />
       </LoadingSpinnerWrapper>
-      <LoadingText>Getting Locations</LoadingText>
+      <h2>Pouring in Berlin...</h2>
     </LoadingPage>
   );
 };

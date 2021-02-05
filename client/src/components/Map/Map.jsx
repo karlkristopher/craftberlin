@@ -54,7 +54,7 @@ const Map = (props) => {
         className="marker"
         name="marker"
         onClick={() => props.setSelectedLocation(location)}
-      ></button>
+      />
     </Marker>
   ));
 
@@ -74,10 +74,10 @@ const Map = (props) => {
           </UserButton>
         </MapControls>
 
-        {/* Displays all Markers */}
+        {/* Displays all markers */}
         {displayLocations}
 
-        {/* Shows User Pin on Map */}
+        {/* Shows user pin on map */}
         {Object.keys(props.locateUser).length !== 0 && (
           <Marker
             latitude={props.locateUser.lat}

@@ -10,4 +10,5 @@ const Emoji = props => (
         {props.symbol}
     </span>
 );
+
 export default Emoji;
