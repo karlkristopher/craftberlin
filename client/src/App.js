@@ -4,15 +4,14 @@ import { createGlobalStyle } from "styled-components";
 import "./App.css";
 
 //Components
-import ReactGA from "react-ga";
 import "./components/Map/FontAwesome";
-import Nav from "./components/Navbar";
-import Home from "./components/Home";
-// import NotFound from "./components/NotFound";
-import Admin from "./components/Admin/Admin";
-import SignUp from "./components/Admin/SignUp";
 import AddLocations from "./components/Admin/AddLocation";
+import Admin from "./components/Admin/Admin";
 import EditLocations from "./components/Admin/EditLocation";
+import Home from "./components/Home";
+import Nav from "./components/Navbar";
+import ReactGA from "react-ga";
+import SignUp from "./components/Admin/SignUp";
 
 const GlobalStyle = createGlobalStyle``;
 
