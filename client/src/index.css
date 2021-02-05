@@ -12,12 +12,23 @@ body {
   font-size: 14px;
 }
 
-html, body, h1, h2, h3, p, button, a, span {
-  font-family: 'Poppins', 'Helvetica Neue', sans-serif, -apple-system;
+html,
+body,
+h1,
+h2,
+h3,
+p,
+button,
+a,
+span {
+  font-family: "Poppins", "Helvetica Neue", sans-serif, -apple-system;
 }
 
-h1 {
-  font-size: 1.5em !important;
+.title {
+  font-size: 1.5em;
+  user-select: none;
+  margin-bottom: 0;
+  margin-left: 0.5em;
 }
 
 .box {
@@ -80,7 +91,36 @@ h1 {
   height: 1.5em;
 }
 
-.marker:active, .marker:focus {
+.dropdown__wrapper {
+  position: fixed;
+  z-index: 7;
+  top: 2.35em;
+  right: 2em;
+}
+
+.mapboxgl-marker {
+  z-index: 6;
+}
+
+.marker:active,
+.marker:focus {
   background: var(--bcb-primary);
   outline: none;
+}
+
+.nav-bar {
+  display: flex;
+  position: fixed;
+  top: 2em;
+  left: 2em;
+  z-index: 1;
+  align-items: center;
+}
+
+.nav-bar__logo {
+  width: 3em;
+}
+
+.nav-bar__logo img {
+  max-width: 100%;
 }
