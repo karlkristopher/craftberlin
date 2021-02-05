@@ -24,7 +24,7 @@ const Loading = () => {
       <LoadingSpinnerWrapper>
         <LoadingSpinner />
       </LoadingSpinnerWrapper>
-      <h2>Pouring in Berlin...</h2>
+      <h2>Pouring…</h2>
     </LoadingPage>
   );
 };
