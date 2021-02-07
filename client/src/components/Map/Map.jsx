@@ -49,13 +49,13 @@ const Map = (props) => {
       key={location._id}
       offsetLeft={-15}
       offsetTop={-15}
-    >
-      <button
-        className="marker"
-        name="marker"
-        onClick={() => props.setSelectedLocation(location)}
-      />
-    </Marker>
+      className={`
+        marker
+        ${props.selectedLocation === location ? " active" : ""}
+      `}
+      name="marker"
+      onClick={() => props.setSelectedLocation(location)}
+    />
   ));
 
   return (
