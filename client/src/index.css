@@ -83,12 +83,24 @@ span {
 .marker {
   display: block;
   background: transparent;
-  border: 5px solid;
+  border: 3px solid;
   border-radius: 4em;
   border-color: var(--bcb-primary);
   cursor: pointer;
   width: 1.5em;
   height: 1.5em;
+  cursor: pointer;
+}
+
+.marker.active,
+.marker:active,
+.marker:focus {
+  background: var(--bcb-primary);
+  outline: none;
+}
+
+.marker.open {
+  background: var(--bcb-green);
 }
 
 .dropdown__wrapper {
@@ -100,12 +112,6 @@ span {
 
 .mapboxgl-marker {
   z-index: 6;
-}
-
-.marker:active,
-.marker:focus {
-  background: var(--bcb-primary);
-  outline: none;
 }
 
 .nav-bar {

@@ -30,16 +30,16 @@ const Home = () => {
   useEffect(() => {
     // If location is selected, change viewport based on location
 
-    if (selectedLocation === "") {
-      //If no location, set to default viewport
-      setViewport((prevState) => ({
-        width: "100vw",
-        height: "100vh",
-        latitude: 52.52,
-        longitude: 13.405,
-        zoom: 11,
-      }));
-    }
+    // if (selectedLocation === "") {
+    //   //If no location, set to default viewport
+    //   setViewport((prevState) => ({
+    //     width: "100vw",
+    //     height: "100vh",
+    //     latitude: 52.52,
+    //     longitude: 13.405,
+    //     zoom: 11,
+    //   }));
+    // }
   }, [selectedLocation]);
 
   useEffect(() => {
