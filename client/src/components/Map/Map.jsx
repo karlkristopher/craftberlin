@@ -69,9 +69,9 @@ const Map = (props) => {
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX}
       >
         <MapControls>
-          <UserButton onClick={setUserLocation}>
-            <FontAwesomeIcon icon="map-marked-alt" size="lg" />
-          </UserButton>
+          {/*<UserButton onClick={setUserLocation}>*/}
+          {/*  <FontAwesomeIcon icon="map-marked-alt" size="lg" />*/}
+          {/*</UserButton>*/}
         </MapControls>
 
         {/* Displays all markers */}
