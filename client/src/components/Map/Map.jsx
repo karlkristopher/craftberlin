@@ -13,34 +13,34 @@ const MapControls = styled.div`
   left: 0.3rem;
 `;
 
-const UserButton = styled.button`
-  background: none;
-  box-shadow: 0px 0px 0px transparent;
-  border: none;
-  text-shadow: 0px 0px 0px transparent;
-  :focus {
-    outline: none;
-  }
-`;
+// const UserButton = styled.button`
+//   background: none;
+//   box-shadow: 0px 0px 0px transparent;
+//   border: none;
+//   text-shadow: 0px 0px 0px transparent;
+//   :focus {
+//     outline: none;
+//   }
+// `;
 
 const Map = (props) => {
-  const setUserLocation = () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      let setNewUserLocation = {
-        lat: position.coords.latitude,
-        long: position.coords.longitude,
-      };
-      let newViewport = {
-        height: "100vh",
-        width: "100vw",
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-        zoom: 13,
-      };
-      props.setViewport(newViewport);
-      props.setLocateUser(setNewUserLocation);
-    });
-  };
+  // const setUserLocation = () => {
+  //   navigator.geolocation.getCurrentPosition((position) => {
+  //     let setNewUserLocation = {
+  //       lat: position.coords.latitude,
+  //       long: position.coords.longitude,
+  //     };
+  //     let newViewport = {
+  //       height: "100vh",
+  //       width: "100vw",
+  //       latitude: position.coords.latitude,
+  //       longitude: position.coords.longitude,
+  //       zoom: 13,
+  //     };
+  //     props.setViewport(newViewport);
+  //     props.setLocateUser(setNewUserLocation);
+  //   });
+  // };
 
   const displayLocations = props.showLocations.map((location) => (
     <Marker
